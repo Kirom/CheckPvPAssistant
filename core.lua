@@ -1,0 +1,361 @@
+local addonName = ... 
+
+-- Create addon namespace
+local CheckPvPAssistant = {}
+_G[addonName] = CheckPvPAssistant
+
+-- Debug flag
+local DEBUG = true
+
+local function DebugPrint(...)
+    if DEBUG then
+        print("|cff00ff00CheckPvP:|r", ...)
+    end
+end
+
+-- Utility functions
+local function GetNameRealm(fullName)
+    if not fullName then return end
+    local name, realm = string.match(fullName, "^([^-]+)-(.+)$")
+    if not name then
+        name = fullName
+        realm = GetRealmName()
+    end
+    return name, realm
+end
+
+-- Region mapping exactly like RaiderIO
+local REGION_TO_LTD = { "us", "kr", "eu", "tw", "cn" }
+
+local function GetRegion()
+    local guid = UnitGUID("player")
+    if not guid then
+        return "eu", 3 -- fallback
+    end
+    
+    local serverId = tonumber(string.match(guid, "^Player%-(%d+)") or 0) or 0
+    local regionId
+    
+    -- Simple server ID to region mapping (based on RaiderIO pattern)
+    if serverId >= 1 and serverId <= 300 then
+        regionId = 1 -- US
+    elseif serverId >= 500 and serverId <= 700 then
+        regionId = 3 -- EU
+    elseif serverId >= 2000 and serverId <= 2100 then
+        regionId = 2 -- KR
+    elseif serverId >= 3000 and serverId <= 3100 then
+        regionId = 4 -- TW
+    elseif serverId >= 4000 and serverId <= 4100 then
+        regionId = 5 -- CN
+    else
+        -- Fallback to GetCurrentRegion() but with correct mapping
+        regionId = GetCurrentRegion()
+        if not regionId or regionId < 1 or regionId > #REGION_TO_LTD then
+            regionId = 3 -- EU fallback
+        end
+    end
+    
+    local regionCode = REGION_TO_LTD[regionId] or "eu"
+    return regionCode, regionId
+end
+
+local function GetCheckPvPURL(name, realm)
+    if not name or not realm then return end
+    
+    -- Get region using the same method as RaiderIO
+    local regionCode, regionId = GetRegion()
+    
+    -- Debug output to help troubleshoot
+    local guid = UnitGUID("player")
+    local serverId = tonumber(string.match(guid or "", "^Player%-(%d+)") or 0) or 0
+    DebugPrint("GUID =", guid, "ServerId =", serverId, "RegionId =", regionId, "RegionCode =", regionCode, "for realm =", realm)
+    
+    -- Format realm name (replace spaces with dashes, handle special characters)
+    local formattedRealm = realm:gsub("%s+", "-"):gsub("'", "")
+    
+    -- Construct check-pvp.fr URL
+    return string.format("https://check-pvp.fr/%s/%s/%s", regionCode, formattedRealm, name)
+end
+
+local function ShowCopyURLDialog(url)
+    if not url then return end
+    
+    -- Create a simple frame to display the URL
+    local frame = CreateFrame("Frame", "CheckPvPCopyFrame", UIParent, "BasicFrameTemplateWithInset")
+    frame:SetSize(500, 150)
+    frame:SetPoint("CENTER")
+    frame:SetMovable(true)
+    frame:EnableMouse(true)
+    frame:RegisterForDrag("LeftButton")
+    frame:SetScript("OnDragStart", frame.StartMoving)
+    frame:SetScript("OnDragStop", frame.StopMovingOrSizing)
+    
+    -- Set high frame strata to appear above LFG windows
+    frame:SetFrameStrata("DIALOG")
+    frame:SetFrameLevel(100)
+    
+    frame.title = frame:CreateFontString(nil, "OVERLAY", "GameFontHighlight")
+    frame.title:SetPoint("TOP", frame.TitleBg, "TOP", 0, -5)
+    frame.title:SetText("Check-PvP URL")
+    
+    local editBox = CreateFrame("EditBox", nil, frame, "InputBoxTemplate")
+    editBox:SetSize(460, 30)
+    editBox:SetPoint("CENTER", frame, "CENTER", 0, 10)
+    editBox:SetText(url)
+    editBox:SetAutoFocus(true)
+    editBox:HighlightText()
+    editBox:SetScript("OnEscapePressed", function() frame:Hide() end)
+    editBox:SetScript("OnEnterPressed", function() frame:Hide() end)
+    
+    local instruction = frame:CreateFontString(nil, "OVERLAY", "GameFontNormal")
+    instruction:SetPoint("BOTTOM", frame, "BOTTOM", 0, 20)
+    instruction:SetText("Press Ctrl+C to copy, then press Enter or Escape to close")
+    
+    frame:Show()
+end
+
+
+
+-- Simple closure generator to match RaiderIO pattern
+local function GenerateClosure(func)
+    return function(owner, rootDescription, contextData)
+        return func(owner, rootDescription, contextData)
+    end
+end
+
+-- Track selected player for dropdown menus
+local selectedName, selectedRealm
+
+-- Valid menu types for our addon
+local validTags = {
+    MENU_LFG_FRAME_SEARCH_ENTRY = 1,
+    MENU_LFG_FRAME_MEMBER_APPLY = 1,
+}
+
+local validTypes = {
+    PLAYER = true,
+    PARTY = true,
+    RAID_PLAYER = true,
+    FRIEND = true,
+    GUILD = true,
+    COMMUNITIES_GUILD_MEMBER = true,
+    COMMUNITIES_WOW_MEMBER = true,
+    BN_FRIEND = true,
+}
+
+-- Validation function similar to RaiderIO
+local function IsValidMenu(rootDescription, contextData)
+    if not contextData then
+        local tagType = validTags[rootDescription.tag]
+        return tagType == 1 -- LFG menus
+    end
+    local which = contextData.which
+    return which and validTypes[which]
+end
+
+-- Get name and realm from LFG info (similar to RaiderIO)
+local function GetLFGListInfo(owner)
+    local resultID = owner.resultID
+    if resultID then
+        local searchResultInfo = C_LFGList.GetSearchResultInfo(resultID)
+        if searchResultInfo and searchResultInfo.leaderName then
+            return GetNameRealm(searchResultInfo.leaderName)
+        end
+    end
+    
+    local memberIdx = owner.memberIdx
+    if not memberIdx then
+        return
+    end
+    local parent = owner:GetParent()
+    if not parent then
+        return
+    end
+    local applicantID = parent.applicantID
+    if not applicantID then
+        return
+    end
+    local fullName = C_LFGList.GetApplicantMemberInfo(applicantID, memberIdx)
+    if fullName then
+        return GetNameRealm(fullName)
+    end
+    
+    return nil, nil
+end
+
+-- Get Battle.net account info (similar to RaiderIO)
+local function GetBNetAccountInfo(accountInfo)
+    if not accountInfo or not accountInfo.gameAccountInfo then
+        return nil, nil
+    end
+    
+    local gameAccountInfo = accountInfo.gameAccountInfo
+    local characterName = gameAccountInfo.characterName
+    local realmName = gameAccountInfo.realmName
+    local characterLevel = gameAccountInfo.characterLevel
+    
+    return characterName, realmName, characterLevel
+end
+
+-- Get name and realm from menu context (similar to RaiderIO)
+local function GetNameRealmForMenu(owner, rootDescription, contextData)
+    if not contextData then
+        local tagType = validTags[rootDescription.tag]
+        if tagType == 1 then
+            return GetLFGListInfo(owner)
+        end
+        return
+    end
+    
+    local unit = contextData.unit
+    local name, realm
+    
+    -- Handle units first
+    if unit and UnitExists(unit) then
+        name, realm = GetNameRealm(UnitName(unit))
+        return name, realm
+    end
+    
+    -- Handle Battle.net friends
+    local accountInfo = contextData.accountInfo
+    if accountInfo then
+        name, realm = GetBNetAccountInfo(accountInfo)
+        if not realm then
+            return -- Skip if no realm info (classic characters on retail)
+        end
+        return name, realm
+    end
+    
+    -- Handle regular name/server context
+    if contextData.name then
+        name, realm = GetNameRealm(contextData.name, contextData.server)
+        return name, realm
+    end
+    
+    -- Handle friends list
+    if contextData.friendsList then
+        local friendInfo = C_FriendList.GetFriendInfoByIndex(contextData.friendsList)
+        if friendInfo and friendInfo.name then
+            name, realm = GetNameRealm(friendInfo.name)
+            return name, realm
+        end
+    end
+    
+    return nil, nil
+end
+
+-- Hook into the dropdown menu system
+local function AddCheckPvPOption(owner, rootDescription, contextData)
+    -- Debug output
+    if contextData then
+        DebugPrint("contextData.which =", contextData.which, "contextData.unit =", contextData.unit, "contextData.name =", contextData.name, "contextData.server =", contextData.server)
+        if contextData.accountInfo then
+            DebugPrint("Found accountInfo =", contextData.accountInfo)
+            if contextData.accountInfo.gameAccountInfo then
+                local gameInfo = contextData.accountInfo.gameAccountInfo
+                DebugPrint("gameAccountInfo - characterName =", gameInfo.characterName, "realmName =", gameInfo.realmName)
+            end
+        end
+        if contextData.friendsList then
+            DebugPrint("friendsList index =", contextData.friendsList)
+        end
+    else
+        DebugPrint("No contextData, rootDescription.tag =", rootDescription.tag)
+    end
+    
+    -- Check if this is a valid menu for our addon
+    if not IsValidMenu(rootDescription, contextData) then
+        DebugPrint("Menu not valid")
+        return
+    end
+    
+    local name, realm = GetNameRealmForMenu(owner, rootDescription, contextData)
+    DebugPrint("Got name =", name, "realm =", realm)
+    
+    if name and realm then
+        selectedName = name
+        selectedRealm = realm
+        rootDescription:CreateDivider()
+        rootDescription:CreateButton("Copy Check-PvP URL", function()
+            local url = GetCheckPvPURL(selectedName, selectedRealm)
+            if url then
+                ShowCopyURLDialog(url)
+            end
+        end)
+        DebugPrint("Added menu option for", name, "-", realm)
+    else
+        DebugPrint("No valid name/realm found - skipping menu option")
+    end
+end
+
+-- Initialize the addon and register menu hooks
+local function InitializeAddon()
+    DebugPrint("Initializing addon...")
+    
+    -- Check if the new Menu system is available (TWW+)
+    if Menu and Menu.ModifyMenu then
+        local ModifyMenu = Menu.ModifyMenu
+        
+        DebugPrint("Menu system found, registering hooks...")
+        
+        -- Hook LFG frame menus (most important for our use case)
+        local success, err = pcall(function()
+            ModifyMenu("MENU_LFG_FRAME_SEARCH_ENTRY", GenerateClosure(AddCheckPvPOption))
+            ModifyMenu("MENU_LFG_FRAME_MEMBER_APPLY", GenerateClosure(AddCheckPvPOption))
+            
+            -- Hook other player context menus
+            ModifyMenu("MENU_UNIT_PLAYER", GenerateClosure(AddCheckPvPOption))
+            ModifyMenu("MENU_UNIT_PARTY", GenerateClosure(AddCheckPvPOption))
+            ModifyMenu("MENU_UNIT_RAID_PLAYER", GenerateClosure(AddCheckPvPOption))
+            ModifyMenu("MENU_UNIT_FRIEND", GenerateClosure(AddCheckPvPOption))
+            ModifyMenu("MENU_UNIT_GUILD", GenerateClosure(AddCheckPvPOption))
+            ModifyMenu("MENU_UNIT_COMMUNITIES_GUILD_MEMBER", GenerateClosure(AddCheckPvPOption))
+            ModifyMenu("MENU_UNIT_COMMUNITIES_MEMBER", GenerateClosure(AddCheckPvPOption))
+            ModifyMenu("MENU_UNIT_BN_FRIEND", GenerateClosure(AddCheckPvPOption))
+        end)
+        
+        if success then
+            print("|cff00ff00Check-PvP Assistant|r: Menu hooks registered successfully!")
+        else
+            print("|cffff0000Check-PvP Assistant|r: Error registering menu hooks:", err)
+        end
+    else
+        print("|cffff0000Check-PvP Assistant|r: Menu system not available! (WoW version may be too old)")
+    end
+end
+
+-- Event handling
+local eventFrame = CreateFrame("Frame")
+eventFrame:RegisterEvent("ADDON_LOADED")
+eventFrame:RegisterEvent("PLAYER_LOGIN")
+
+eventFrame:SetScript("OnEvent", function(self, event, ...)
+    if event == "ADDON_LOADED" then
+        local loadedAddonName = ...
+        if loadedAddonName == addonName then
+            InitializeAddon()
+        end
+    elseif event == "PLAYER_LOGIN" then
+        print("|cff00ff00Check-PvP Assistant|r addon loaded successfully!")
+    end
+end)
+
+-- For debugging - slash command to test URL generation
+SLASH_CHECKPVP1 = "/checkpvp"
+SlashCmdList["CHECKPVP"] = function(msg)
+    local name, realm = string.match(msg, "^(%S+)%s*(.*)$")
+    if not name or name == "" then
+        name = UnitName("player")
+        realm = GetRealmName()
+    elseif realm == "" then
+        realm = GetRealmName()
+    end
+    
+    local url = GetCheckPvPURL(name, realm)
+    if url then
+        ShowCopyURLDialog(url)
+        print("Generated Check-PvP URL for: " .. name .. "-" .. realm)
+    else
+        print("Failed to generate URL for: " .. (name or "unknown"))
+    end
+end 
