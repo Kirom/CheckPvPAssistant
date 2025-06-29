@@ -20,7 +20,7 @@ A World of Warcraft addon that adds convenient access to [Check-PvP.fr](https://
    - **Mac**: `Applications/World of Warcraft/_retail_/Interface/AddOns/`
 3. Restart World of Warcraft or reload your UI (`/reload`)
 
-### CurseForge/Wago
+### CurseForge/Wago/WowUp
 *Coming soon*
 
 ## Usage
@@ -33,6 +33,10 @@ A World of Warcraft addon that adds convenient access to [Check-PvP.fr](https://
 6. Open the URL in your browser to view the player's PvP statistics
 
 > **Note**: If the website shows "character not found" (e.g., "Tripitropa - Silvermoon is not found Reason: The character doesn't exist"), you can manually search (this will fetch the latest data) for the character on the website using the name and realm from the error message. Simply copy the name and realm from the error message and paste them into the search bar on the website.
+
+### Known Issues
+
+- Only EU region was tested, other regions need to be tested.
 
 ### Supported Contexts
 
