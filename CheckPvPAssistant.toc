@@ -1,4 +1,4 @@
-## Interface: 110005, 110007
+## Interface: 110105, 110107
 ## Title: Check-PvP Assistant
 ## Notes: Addon that adds "Copy Check-PvP URL" option to player dropdown menus in LFG, and other menus for easy access to Check-PvP armory.
 ## Author: Kirom
