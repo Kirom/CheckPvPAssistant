@@ -6,4 +6,5 @@
 ## IconTexture: Interface\Icons\Achievement_featsofstrength_gladiator_07
 ## Category: PvP
 
+db_realms.lua
 core.lua

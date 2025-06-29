@@ -1,8 +1,4 @@
-local addonName = ... 
-
--- Create addon namespace
-local CheckPvPAssistant = {}
-_G[addonName] = CheckPvPAssistant
+local addonName, ns = ...
 
 -- Debug flag
 local DEBUG = true
@@ -59,6 +55,11 @@ local function GetRegion()
     return regionCode, regionId
 end
 
+-- Function to get English realm slug from localized name
+local function GetRealmSlug(realm)
+    return ns.realmSlugs[realm] or realm
+end
+
 local function GetCheckPvPURL(name, realm)
     if not name or not realm then return end
     
@@ -68,13 +69,16 @@ local function GetCheckPvPURL(name, realm)
     -- Debug output to help troubleshoot
     local guid = UnitGUID("player")
     local serverId = tonumber(string.match(guid or "", "^Player%-(%d+)") or 0) or 0
-    DebugPrint("GUID =", guid, "ServerId =", serverId, "RegionId =", regionId, "RegionCode =", regionCode, "for realm =", realm)
+    DebugPrint("GUID =", guid, "ServerId =", serverId, "RegionId =", regionId, "RegionCode =", regionCode, "Realm =", realm)
     
-    -- Format realm name (replace spaces with dashes, handle special characters)
-    local formattedRealm = realm:gsub("%s+", "-"):gsub("'", "")
+    -- Translate realm name to English slug - simplified since we have exact matches
+    local englishRealm = GetRealmSlug(realm)
+    DebugPrint("Realm translation:", realm, "->", englishRealm)
+
+    DebugPrint("Final URL components: region =", regionCode, "realm =", englishRealm, "name =", name)
     
     -- Construct check-pvp.fr URL
-    return string.format("https://check-pvp.fr/%s/%s/%s", regionCode, formattedRealm, name)
+    return string.format("https://check-pvp.fr/%s/%s/%s", regionCode, englishRealm, name)
 end
 
 local function ShowCopyURLDialog(url)
@@ -114,9 +118,7 @@ local function ShowCopyURLDialog(url)
     frame:Show()
 end
 
-
-
--- Simple closure generator to match RaiderIO pattern
+-- Simple closure generator that matches RaiderIO pattern
 local function GenerateClosure(func)
     return function(owner, rootDescription, contextData)
         return func(owner, rootDescription, contextData)
@@ -126,7 +128,7 @@ end
 -- Track selected player for dropdown menus
 local selectedName, selectedRealm
 
--- Valid menu types for our addon
+-- Valid menu types
 local validTags = {
     MENU_LFG_FRAME_SEARCH_ENTRY = 1,
     MENU_LFG_FRAME_MEMBER_APPLY = 1,
@@ -207,16 +209,32 @@ local function GetNameRealmForMenu(owner, rootDescription, contextData)
         return
     end
     
-    local unit = contextData.unit
     local name, realm
     
-    -- Handle units first
-    if unit and UnitExists(unit) then
-        name, realm = GetNameRealm(UnitName(unit))
+    -- PRIORITY 1: Use contextData.name and contextData.server if both are available
+    -- This is the most reliable source for cross-realm players
+    if contextData.name and contextData.server then
+        name = contextData.name
+        realm = contextData.server
+        DebugPrint("Using contextData: name =", name, "server =", realm)
         return name, realm
     end
     
-    -- Handle Battle.net friends
+    -- PRIORITY 2: Handle units (target, party members, etc.)
+    local unit = contextData.unit
+    if unit and UnitExists(unit) then
+        name, realm = GetNameRealm(UnitName(unit))
+        -- If we have contextData.server, prefer it over parsed realm
+        if contextData.server then
+            realm = contextData.server
+            DebugPrint("Using unit name with contextData server: name =", name, "server =", realm)
+        else
+            DebugPrint("Using unit data: name =", name, "realm =", realm)
+        end
+        return name, realm
+    end
+    
+    -- PRIORITY 3: Handle Battle.net friends
     local accountInfo = contextData.accountInfo
     if accountInfo then
         name, realm = GetBNetAccountInfo(accountInfo)
@@ -226,13 +244,13 @@ local function GetNameRealmForMenu(owner, rootDescription, contextData)
         return name, realm
     end
     
-    -- Handle regular name/server context
+    -- PRIORITY 4: Handle regular name context (fallback)
     if contextData.name then
-        name, realm = GetNameRealm(contextData.name, contextData.server)
+        name, realm = GetNameRealm(contextData.name)
         return name, realm
     end
     
-    -- Handle friends list
+    -- PRIORITY 5: Handle friends list
     if contextData.friendsList then
         local friendInfo = C_FriendList.GetFriendInfoByIndex(contextData.friendsList)
         if friendInfo and friendInfo.name then
