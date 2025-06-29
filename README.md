@@ -76,7 +76,6 @@ CheckPvPAssistant/
 ├── CheckPvPAssistant.toc    # Addon metadata
 ├── core.lua                 # Main addon logic
 ├── db_realms.lua           # Realm name translations
-└── RaiderIO/               # RaiderIO addon (bundled)
 ```
 
 ### Debug Mode
