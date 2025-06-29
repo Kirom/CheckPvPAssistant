@@ -1,0 +1,2 @@
+# This file ensures the ReleaseNotes directory is tracked in git
+# Each release should have its own release notes file named vX.Y.Z.md 
