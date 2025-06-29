@@ -144,6 +144,8 @@ local validTypes = {
     COMMUNITIES_WOW_MEMBER = true,
     BN_FRIEND = true,
     SELF = true,
+    ENEMY_PLAYER = true,
+    OTHER_PLAYER = true,
 }
 
 -- Validation function similar to RaiderIO
@@ -332,6 +334,8 @@ local function InitializeAddon()
             ModifyMenu("MENU_UNIT_COMMUNITIES_MEMBER", GenerateClosure(AddCheckPvPOption))
             ModifyMenu("MENU_UNIT_BN_FRIEND", GenerateClosure(AddCheckPvPOption))
             ModifyMenu("MENU_UNIT_SELF", GenerateClosure(AddCheckPvPOption))
+            ModifyMenu("MENU_UNIT_ENEMY_PLAYER", GenerateClosure(AddCheckPvPOption))
+            ModifyMenu("MENU_UNIT_OTHER_PLAYER", GenerateClosure(AddCheckPvPOption))
         end)
         
         if success then
