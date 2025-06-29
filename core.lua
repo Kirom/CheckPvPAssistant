@@ -143,6 +143,7 @@ local validTypes = {
     COMMUNITIES_GUILD_MEMBER = true,
     COMMUNITIES_WOW_MEMBER = true,
     BN_FRIEND = true,
+    SELF = true,
 }
 
 -- Validation function similar to RaiderIO
@@ -330,6 +331,7 @@ local function InitializeAddon()
             ModifyMenu("MENU_UNIT_COMMUNITIES_GUILD_MEMBER", GenerateClosure(AddCheckPvPOption))
             ModifyMenu("MENU_UNIT_COMMUNITIES_MEMBER", GenerateClosure(AddCheckPvPOption))
             ModifyMenu("MENU_UNIT_BN_FRIEND", GenerateClosure(AddCheckPvPOption))
+            ModifyMenu("MENU_UNIT_SELF", GenerateClosure(AddCheckPvPOption))
         end)
         
         if success then
@@ -358,22 +360,4 @@ eventFrame:SetScript("OnEvent", function(self, event, ...)
     end
 end)
 
--- For debugging - slash command to test URL generation
-SLASH_CHECKPVP1 = "/checkpvp"
-SlashCmdList["CHECKPVP"] = function(msg)
-    local name, realm = string.match(msg, "^(%S+)%s*(.*)$")
-    if not name or name == "" then
-        name = UnitName("player")
-        realm = GetRealmName()
-    elseif realm == "" then
-        realm = GetRealmName()
-    end
-    
-    local url = GetCheckPvPURL(name, realm)
-    if url then
-        ShowCopyURLDialog(url)
-        print("Generated Check-PvP URL for: " .. name .. "-" .. realm)
-    else
-        print("Failed to generate URL for: " .. (name or "unknown"))
-    end
-end 
+
