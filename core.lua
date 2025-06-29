@@ -20,7 +20,7 @@ local function GetNameRealm(fullName)
     return name, realm
 end
 
--- Region mapping exactly like RaiderIO
+-- Region mapping
 local REGION_TO_LTD = { "us", "kr", "eu", "tw", "cn" }
 
 local function GetRegion()
@@ -32,7 +32,7 @@ local function GetRegion()
     local serverId = tonumber(string.match(guid, "^Player%-(%d+)") or 0) or 0
     local regionId
     
-    -- Simple server ID to region mapping (based on RaiderIO pattern)
+    -- Simple server ID to region mapping
     if serverId >= 1 and serverId <= 300 then
         regionId = 1 -- US
     elseif serverId >= 500 and serverId <= 700 then
@@ -63,7 +63,7 @@ end
 local function GetCheckPvPURL(name, realm)
     if not name or not realm then return end
     
-    -- Get region using the same method as RaiderIO
+    -- Get region
     local regionCode, regionId = GetRegion()
     
     -- Debug output to help troubleshoot
@@ -118,7 +118,7 @@ local function ShowCopyURLDialog(url)
     frame:Show()
 end
 
--- Simple closure generator that matches RaiderIO pattern
+-- Simple closure generator
 local function GenerateClosure(func)
     return function(owner, rootDescription, contextData)
         return func(owner, rootDescription, contextData)
@@ -148,7 +148,7 @@ local validTypes = {
     OTHER_PLAYER = true,
 }
 
--- Validation function similar to RaiderIO
+-- Validation function
 local function IsValidMenu(rootDescription, contextData)
     if not contextData then
         local tagType = validTags[rootDescription.tag]
@@ -158,7 +158,7 @@ local function IsValidMenu(rootDescription, contextData)
     return which and validTypes[which]
 end
 
--- Get name and realm from LFG info (similar to RaiderIO)
+-- Get name and realm from LFG info
 local function GetLFGListInfo(owner)
     local resultID = owner.resultID
     if resultID then
@@ -188,7 +188,7 @@ local function GetLFGListInfo(owner)
     return nil, nil
 end
 
--- Get Battle.net account info (similar to RaiderIO)
+-- Get Battle.net account info
 local function GetBNetAccountInfo(accountInfo)
     if not accountInfo or not accountInfo.gameAccountInfo then
         return nil, nil
@@ -202,7 +202,7 @@ local function GetBNetAccountInfo(accountInfo)
     return characterName, realmName, characterLevel
 end
 
--- Get name and realm from menu context (similar to RaiderIO)
+-- Get name and realm from menu context
 local function GetNameRealmForMenu(owner, rootDescription, contextData)
     if not contextData then
         local tagType = validTags[rootDescription.tag]
