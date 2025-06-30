@@ -32,7 +32,7 @@ A World of Warcraft addon that adds convenient access to [Check-PvP.fr](https://
 5. **Press Enter or Escape** to close the dialog
 6. Open the URL in your browser to view the player's PvP statistics
 
-> **Note**: If the website shows "character not found" (e.g., "Tripitropa - Silvermoon is not found Reason: The character doesn't exist"), you can manually search (this will fetch the latest data) for the character on the website using the name and realm from the error message. Simply copy the name and realm from the error message and paste them into the search bar on the website.
+> **Note**: If the website shows "character not found" (e.g., "Tripitropa - Silvermoon is not found Reason: The character doesn't exist"), you can manually search (this will fetch the latest data) for the character on the website using the name and realm from the error message. Simply copy the name and realm from the error message and paste them into the search bar on the website (if there is a `%20` in the realm name, replace it with a space).
 
 ### Known Issues
 
