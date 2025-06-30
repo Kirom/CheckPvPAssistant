@@ -90,9 +90,23 @@ Realm names are automatically translated from WoW's internal format to Check-PvP
 ### Project Structure
 ```
 CheckPvPAssistant/
-├── CheckPvPAssistant.toc    # Addon metadata
-├── core.lua                 # Main addon logic
-├── db_realms.lua           # Realm name translations
+├── CheckPvPAssistant.toc           # Addon metadata and load order
+├── src/
+│   ├── config.lua                  # Configuration management
+│   ├── db/
+│   │   ├── db_realms.lua          # Realm name translations (1000+ realms)
+│   │   └── db_regions.lua         # Region ID mappings
+│   ├── utils.lua                   # Debug utilities and helpers
+│   ├── region.lua                  # Region detection logic
+│   ├── url.lua                     # URL generation logic
+│   ├── ui.lua                      # UI components and dialogs
+│   ├── menu.lua                    # Menu system integration
+│   ├── events.lua                  # Event handling coordination
+│   ├── commands.lua                # Slash command handling
+│   └── core.lua                    # Main initialization and coordination
+├── CHANGELOG.md                    # Version history and changes
+├── README.md                       # This file
+└── TODO.md                         # Future development plans
 ```
 
 ### Debug Mode

@@ -9,11 +9,22 @@
 ## SavedVariables: CheckPvPAssistantDB
 
 # Config
-config.lua
+src/config.lua
 
 # Database
-db/db_realms.lua
-db/db_regions.lua
+src/db/db_realms.lua
+src/db/db_regions.lua
 
-# Core
-core.lua
+# Utilities
+src/utils.lua
+
+# Core modules
+src/region.lua
+src/url.lua
+src/ui.lua
+src/menu.lua
+src/events.lua
+src/commands.lua
+
+# Core coordination
+src/core.lua
