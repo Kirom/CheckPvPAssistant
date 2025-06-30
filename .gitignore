@@ -36,8 +36,5 @@ Thumbs.db
 /tools/
 /scripts/
 
-# Personal config files
-config.local.* 
-
 # Cursor files
 .cursor/

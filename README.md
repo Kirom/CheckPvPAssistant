@@ -57,6 +57,23 @@ A World of Warcraft addon that adds convenient access to [Check-PvP.fr](https://
 - **World of Warcraft**: The War Within (11.0+) or later
 - **Menu System**: Uses the new Menu API introduced in TWW
 
+## Configuration
+
+The addon has a simple debug mode that can be toggled using slash commands:
+
+### Slash Commands
+
+- `/checkpvp` or `/cpvp` - Show available commands
+- `/checkpvp debug` - Toggle debug output
+
+### Examples
+
+```
+/checkpvp debug        # Toggle debug mode
+```
+
+Debug setting is automatically saved and will persist between game sessions.
+
 ## Technical Details
 
 ### Region Detection

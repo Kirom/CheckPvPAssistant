@@ -6,5 +6,8 @@
 ## IconTexture: Interface\Icons\Achievement_featsofstrength_gladiator_07
 ## Category: PvP
 
+## SavedVariables: CheckPvPAssistantDB
+
+config.lua
 db_realms.lua
 core.lua

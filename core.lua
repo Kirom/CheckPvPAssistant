@@ -1,10 +1,7 @@
 local addonName, ns = ...
 
--- Debug flag
-local DEBUG = true
-
 local function DebugPrint(...)
-    if DEBUG then
+    if ns.config.DEBUG then
         print("|cff00ff00CheckPvP:|r", ...)
     end
 end
@@ -78,7 +75,7 @@ local function GetCheckPvPURL(name, realm)
     DebugPrint("Final URL components: region =", regionCode, "realm =", englishRealm, "name =", name)
     
     -- Construct check-pvp.fr URL
-    return string.format("https://check-pvp.fr/%s/%s/%s", regionCode, englishRealm, name)
+    return string.format("%s/%s/%s/%s", ns.config.BASE_URL, regionCode, englishRealm, name)
 end
 
 local function ShowCopyURLDialog(url)
@@ -95,12 +92,12 @@ local function ShowCopyURLDialog(url)
     frame:SetScript("OnDragStop", frame.StopMovingOrSizing)
     
     -- Set high frame strata to appear above LFG windows
-    frame:SetFrameStrata("DIALOG")
-    frame:SetFrameLevel(100)
+    frame:SetFrameStrata(ns.config.FRAME_STRATA)
+    frame:SetFrameLevel(ns.config.FRAME_LEVEL)
     
     frame.title = frame:CreateFontString(nil, "OVERLAY", "GameFontHighlight")
     frame.title:SetPoint("TOP", frame.TitleBg, "TOP", 0, -5)
-    frame.title:SetText("Check-PvP URL")
+    frame.title:SetText(ns.config.DIALOG_TITLE)
     
     local editBox = CreateFrame("EditBox", nil, frame, "InputBoxTemplate")
     editBox:SetSize(460, 30)
@@ -297,7 +294,7 @@ local function AddCheckPvPOption(owner, rootDescription, contextData)
         selectedName = name
         selectedRealm = realm
         rootDescription:CreateDivider()
-        rootDescription:CreateButton("Copy Check-PvP URL", function()
+        rootDescription:CreateButton(ns.config.MENU_TEXT, function()
             local url = GetCheckPvPURL(selectedName, selectedRealm)
             if url then
                 ShowCopyURLDialog(url)
@@ -363,5 +360,28 @@ eventFrame:SetScript("OnEvent", function(self, event, ...)
         print("|cff00ff00Check-PvP Assistant|r addon loaded successfully!")
     end
 end)
+
+-- Slash command for debug toggle
+SLASH_CHECKPVPCONFIG1 = "/checkpvp"
+SLASH_CHECKPVPCONFIG2 = "/cpvp"
+SlashCmdList["CHECKPVPCONFIG"] = function(msg)
+    local command = string.match(msg, "^(%S+)")
+    
+    if not command or command == "" or command == "help" then
+        print("|cff00ff00CheckPvP Assistant|r commands:")
+        print("  |cffffcc00/checkpvp debug|r - Toggle debug output")
+        return
+    end
+    
+    if command == "debug" then
+        local value = string.match(msg, "^debug%s+(.+)$")
+        -- Toggle debug mode
+        local newValue = not ns.config.DEBUG
+        ns.SetConfig("DEBUG", newValue)
+        print("|cff00ff00CheckPvP Assistant:|r Debug output", newValue and "enabled" or "disabled")
+    else
+        print("|cffff0000CheckPvP Assistant:|r Unknown command. Use '/checkpvp help' for available commands.")
+    end
+end
 
 
