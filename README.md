@@ -96,7 +96,12 @@ CheckPvPAssistant/
 ```
 
 ### Debug Mode
-Enable debug output by setting `DEBUG = true` in `core.lua`. This will show detailed information about:
+Enable debug output by using the slash command:
+```
+/checkpvp debug
+```
+
+This will show detailed information about:
 - Region detection
 - Realm translation
 - Menu context data

@@ -144,9 +144,9 @@ When adding features:
 
 ### Debugging
 
-Enable debug mode in `core.lua`:
-```lua
-local DEBUG = true
+Enable debug mode in-game:
+```
+/checkpvp debug
 ```
 
 This provides detailed console output for:
