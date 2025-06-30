@@ -13,6 +13,7 @@ config.lua
 
 # Database
 db/db_realms.lua
+db/db_regions.lua
 
 # Core
 core.lua

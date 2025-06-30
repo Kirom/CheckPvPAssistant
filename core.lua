@@ -27,25 +27,16 @@ local function GetRegion()
     end
     
     local serverId = tonumber(string.match(guid, "^Player%-(%d+)") or 0) or 0
-    local regionId
+    local regionId = ns.regionIDs[serverId]
     
-    -- Simple server ID to region mapping
-    if serverId >= 1 and serverId <= 300 then
-        regionId = 1 -- US
-    elseif serverId >= 500 and serverId <= 700 then
-        regionId = 3 -- EU
-    elseif serverId >= 2000 and serverId <= 2100 then
-        regionId = 2 -- KR
-    elseif serverId >= 3000 and serverId <= 3100 then
-        regionId = 4 -- TW
-    elseif serverId >= 4000 and serverId <= 4100 then
-        regionId = 5 -- CN
-    else
-        -- Fallback to GetCurrentRegion() but with correct mapping
+    -- Fallback to GetCurrentRegion() but with correct mapping
+    if not regionId or regionId < 1 or regionId > #REGION_TO_LTD then
         regionId = GetCurrentRegion()
-        if not regionId or regionId < 1 or regionId > #REGION_TO_LTD then
-            regionId = 3 -- EU fallback
-        end
+    end
+
+    -- Fallback to EU if no regionId is found
+    if not regionId then
+        regionId = 3 -- EU fallback
     end
     
     local regionCode = REGION_TO_LTD[regionId] or "eu"
