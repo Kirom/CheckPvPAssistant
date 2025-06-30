@@ -36,7 +36,7 @@ A World of Warcraft addon that adds convenient access to [Check-PvP.fr](https://
 
 ### Known Issues
 
-- Only EU region was tested, other regions need to be tested.
+- Only EU, US, TW regions was tested, other regions need to be tested.
 
 ### Supported Contexts
 
