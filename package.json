@@ -1,0 +1,50 @@
+{
+  "name": "checkpvpassistant",
+  "version": "1.0.0",
+  "description": "World of Warcraft addon for Check-PvP.fr integration",
+  "author": "Kirom",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Kirom/CheckPvPAssistant.git"
+  },
+  "keywords": [
+    "world-of-warcraft",
+    "wow",
+    "addon",
+    "pvp",
+    "check-pvp",
+    "armory",
+    "arena"
+  ],
+  "scripts": {
+    "test": "echo \"No tests specified\"",
+    "lint": "bash scripts/run_luacheck.sh",
+    "package": "bash scripts/package.sh",
+    "release": "bash scripts/release.sh"
+  },
+  "devDependencies": {
+    "luacheck": "*"
+  },
+  "wow": {
+    "interface": "110107",
+    "title": "Check-PvP Assistant",
+    "author": "Kirom",
+    "category": "PvP",
+    "savedVariables": [
+      "CheckPvPAssistantDB"
+    ]
+  },
+  "distribution": {
+    "curseforge": {
+      "projectId": null,
+      "gameVersions": ["110105", "110107"]
+    },
+    "wago": {
+      "projectId": null
+    },
+    "wowup": {
+      "supported": true
+    }
+  }
+} 

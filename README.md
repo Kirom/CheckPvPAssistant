@@ -20,8 +20,14 @@ A World of Warcraft addon that adds convenient access to [Check-PvP.fr](https://
    - **Mac**: `Applications/World of Warcraft/_retail_/Interface/AddOns/`
 3. Restart World of Warcraft or reload your UI (`/reload`)
 
-### CurseForge/Wago/WowUp
-*Coming soon*
+### Automated Distribution Platforms
+
+The addon is automatically distributed to multiple platforms via GitHub Actions:
+
+- **CurseForge**: [CheckPvPAssistant on CurseForge](https://www.curseforge.com/wow/addons/checkpvpassistant) *(Available)*
+- **Wago**: [CheckPvPAssistant on Wago](https://addons.wago.io/addons/checkpvpassistant) *(Available)*
+- **WowUp**: Direct installation via GitHub releases *(Available)*
+- **GitHub Releases**: [Latest releases](https://github.com/Kirom/CheckPvPAssistant/releases) *(Always available)*
 
 ## Usage
 
@@ -135,6 +141,24 @@ Realm names are automatically translated from WoW's internal format to Check-PvP
 - Capitalization is preserved
 
 ## Development
+
+### Quick Start
+
+```bash
+# Test package locally
+./scripts/package.sh
+
+# Create a new release
+./scripts/release.sh 1.0.1
+```
+
+### Automated CI/CD
+
+The project uses GitHub Actions for:
+- **Automated testing** on every push/PR
+- **Multi-platform releases** to CurseForge, Wago, and WowUp
+- **Version management** and changelog generation
+- **Package validation** and integrity checking
 
 ### Project Structure
 ```

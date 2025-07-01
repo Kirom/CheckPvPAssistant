@@ -4,6 +4,7 @@
 ## Author: Kirom
 ## Version: 1.0.0
 ## IconTexture: Interface\Icons\Achievement_featsofstrength_gladiator_07
+## License: MIT
 ## Category: PvP
 
 ## SavedVariables: CheckPvPAssistantDB
