@@ -55,6 +55,19 @@ jobs:
           cp CheckPvPAssistant.toc release/CheckPvPAssistant/
           cp -r src/ release/CheckPvPAssistant/
           
+          # Copy documentation files if they exist
+          if [ -f "LICENSE" ]; then
+            cp LICENSE release/CheckPvPAssistant/
+          fi
+          
+          if [ -f "README.md" ]; then
+            cp README.md release/CheckPvPAssistant/
+          fi
+          
+          if [ -f "CHANGELOG.md" ]; then
+            cp CHANGELOG.md release/CheckPvPAssistant/
+          fi
+          
           # Create archive
           cd release
           zip -r ../CheckPvPAssistant-${{ steps.extract_version.outputs.version }}.zip CheckPvPAssistant/
