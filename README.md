@@ -1,5 +1,14 @@
 # CheckPvPAssistant
 
+[![GitHub release (latest by date)](https://img.shields.io/github/v/release/Kirom/CheckPvPAssistant?style=for-the-badge&color=green)](https://github.com/Kirom/CheckPvPAssistant/releases/latest)
+[![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/Kirom/CheckPvPAssistant/release.yml?style=for-the-badge&label=Build)](https://github.com/Kirom/CheckPvPAssistant/actions)
+[![CurseForge](https://img.shields.io/badge/CurseForge-Download-orange?style=for-the-badge&logo=curseforge)](https://www.curseforge.com/wow/addons/check-pvp-assistant)
+[![Wago](https://img.shields.io/badge/Wago-Install-blue?style=for-the-badge)](https://addons.wago.io/addons/check-pvp-assistant)
+
+[![World of Warcraft](https://img.shields.io/badge/World%20of%20Warcraft-The%20War%20Within-0084ff?style=for-the-badge&logo=battle.net)](https://worldofwarcraft.com)
+[![Interface Version](https://img.shields.io/badge/Interface-11.0.5%20|%2011.0.7-brightgreen?style=for-the-badge)](https://github.com/Kirom/CheckPvPAssistant)
+[![GitHub issues](https://img.shields.io/github/issues/Kirom/CheckPvPAssistant?style=for-the-badge)](https://github.com/Kirom/CheckPvPAssistant/issues)
+
 A World of Warcraft addon that adds convenient access to [Check-PvP.fr](https://check-pvp.fr) player profiles through right-click context menus. Supports LFG search results and applicants and generates full URLs for the player that is selected by default and can be copied to the clipboard immediately with Ctrl+C.
 
 ## Features
