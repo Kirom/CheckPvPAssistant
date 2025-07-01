@@ -14,6 +14,9 @@ on:
 jobs:
   release:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      actions: read
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -66,46 +69,30 @@ jobs:
         id: changelog
         run: |
           # Extract the latest version's changelog
-          awk '/^## \[Unreleased\]/,/^## \[/{if(/^## \[/ && !/^## \[Unreleased\]/) exit; if(!/^## \[Unreleased\]/) print}' CHANGELOG.md > current_changelog.md
-          
-          # If unreleased section is empty, try to get the version being released
-          if [ ! -s current_changelog.md ]; then
-            awk '/^## \[${{ steps.extract_version.outputs.version }}\]/,/^## \[/{if(/^## \[/ && !/^## \[${{ steps.extract_version.outputs.version }}\]/) exit; if(!/^## \[${{ steps.extract_version.outputs.version }}\]/) print}' CHANGELOG.md > current_changelog.md
-          fi
+          awk '/^## \[1\.0\.0\]/,/^## \[/{if(/^## \[/ && !/^## \[1\.0\.0\]/) exit; if(!/^## \[1\.0\.0\]/) print}' CHANGELOG.md > current_changelog.md
           
           # If still empty, provide a default message
           if [ ! -s current_changelog.md ]; then
             echo "Release ${{ steps.extract_version.outputs.version }}" > current_changelog.md
+            echo "" >> current_changelog.md
+            echo "### Added" >> current_changelog.md
+            echo "- Initial release of CheckPvPAssistant addon" >> current_changelog.md
           fi
 
       - name: Create GitHub Release
-        id: create_release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        uses: softprops/action-gh-release@v2
         with:
           tag_name: ${{ steps.extract_version.outputs.tag }}
-          release_name: CheckPvPAssistant ${{ steps.extract_version.outputs.version }}
+          name: CheckPvPAssistant ${{ steps.extract_version.outputs.version }}
           body_path: current_changelog.md
           draft: false
           prerelease: false
-
-      - name: Upload Release Asset
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./CheckPvPAssistant-${{ steps.extract_version.outputs.version }}.zip
-          asset_name: CheckPvPAssistant-${{ steps.extract_version.outputs.version }}.zip
-          asset_content_type: application/zip
+          files: CheckPvPAssistant-${{ steps.extract_version.outputs.version }}.zip
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Publish to CurseForge
         uses: itsmeow/curseforge-upload@v3
-        if: ${{ env.CURSEFORGE_TOKEN != '' }}
-        env:
-          CURSEFORGE_TOKEN: ${{ secrets.CURSEFORGE_TOKEN }}
-          CURSEFORGE_PROJECT_ID: ${{ secrets.CURSEFORGE_PROJECT_ID }}
+        if: ${{ secrets.CURSEFORGE_TOKEN }}
         with:
           token: ${{ secrets.CURSEFORGE_TOKEN }}
           project_id: ${{ secrets.CURSEFORGE_PROJECT_ID }}
@@ -118,7 +105,7 @@ jobs:
           release_type: release
 
       - name: Publish to Wago
-        if: ${{ env.WAGO_API_TOKEN != '' }}
+        if: ${{ secrets.WAGO_API_TOKEN }}
         env:
           WAGO_API_TOKEN: ${{ secrets.WAGO_API_TOKEN }}
           WAGO_PROJECT_ID: ${{ secrets.WAGO_PROJECT_ID }}
@@ -172,7 +159,7 @@ jobs:
           echo "- **File**: ${{ steps.package.outputs.filename }}" >> $GITHUB_STEP_SUMMARY
           echo "- **SHA256**: ${{ steps.package.outputs.sha256 }}" >> $GITHUB_STEP_SUMMARY
           echo "- **Interface**: ${{ steps.interface_version.outputs.interface }}" >> $GITHUB_STEP_SUMMARY
-          echo "- **GitHub Release**: [View Release](${{ steps.create_release.outputs.html_url }})" >> $GITHUB_STEP_SUMMARY
+          echo "- **GitHub Release**: [View Release](https://github.com/${{ github.repository }}/releases/tag/${{ steps.extract_version.outputs.tag }})" >> $GITHUB_STEP_SUMMARY
           echo "- **CurseForge**: $([ -n '${{ secrets.CURSEFORGE_TOKEN }}' ] && echo 'Published ✅' || echo 'Skipped (no token)')" >> $GITHUB_STEP_SUMMARY
           echo "- **Wago**: $([ -n '${{ secrets.WAGO_API_TOKEN }}' ] && echo 'Published ✅' || echo 'Skipped (no token)')" >> $GITHUB_STEP_SUMMARY
           echo "- **WowUp**: Metadata created 📋" >> $GITHUB_STEP_SUMMARY 
