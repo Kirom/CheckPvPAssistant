@@ -1,6 +1,6 @@
 # CheckPvPAssistant
 
-A World of Warcraft addon that adds convenient access to [Check-PvP.fr](https://check-pvp.fr) player profiles through right-click context menus.
+A World of Warcraft addon that adds convenient access to [Check-PvP.fr](https://check-pvp.fr) player profiles through right-click context menus. Supports LFG search results and applicants and generates full URLs for the player that is selected by default and can be copied to the clipboard immediately with Ctrl+C.
 
 ## Features
 
@@ -32,7 +32,53 @@ A World of Warcraft addon that adds convenient access to [Check-PvP.fr](https://
 5. **Press Enter or Escape** to close the dialog
 6. Open the URL in your browser to view the player's PvP statistics
 
-> **Note**: If the website shows "character not found" (e.g., "Tripitropa - Silvermoon is not found Reason: The character doesn't exist"), you can manually search (this will fetch the latest data) for the character on the website using the name and realm from the error message. Simply copy the name and realm from the error message and paste them into the search bar on the website (if there is a `%20` in the realm name, replace it with a space).
+> **Note**: If the website shows "character not found", don't worry! See the detailed step-by-step guide with screenshots in the [Character Not Found section](#character-not-found---step-by-step-fix) below to manually search for the character (this will fetch the latest data from Blizzard's servers).
+
+## Screenshots & Examples
+
+### Basic Usage Example
+
+**Step 1: Right-click on your character**
+![Self Example](./assets/images/self-example.png)
+*Right-click on your character to see the "Copy Check-PvP URL" option in the context menu*
+
+**Step 2: URL Dialog appears**
+![URL Dialog](./assets/images/url-dialog.png)
+*The dialog appears with the Check-PvP.fr URL ready to copy (Press Ctrl+C to copy)*
+
+**Step 3: Successful Check-PvP.fr result**
+![Successful Website Result](./assets/images/website-success-example.png)
+*Open the URL in your browser to view the player's PvP statistics and profile*
+
+### Character Not Found - Step by Step Fix
+If the website shows "character not found", you can manually search for them (this will fetch the latest data on the website and make the profile appear):
+
+**Step 1: Character Not Found Error**
+![Website Error](./assets/images/website-fail-example.png)
+*The error message when a character is not initially found*
+
+**Step 2: Copy Character Information**
+![Copy Character Info](./assets/images/website-fail-example-step-1.png)
+*Copy the character name and realm from the error message*
+
+**Step 3: Manual Search**
+![Manual Search](./assets/images/website-fail-example-step-2.png)
+*Paste the information into the search bar and search manually*
+
+**Step 4: Character Found**
+![Character Found](./assets/images/website-fail-example-step-3.png)
+*The character profile after manual search (fetches latest data from Blizzard's servers)*
+
+### Additional Player Sources
+The addon works with players from various sources:
+
+| Context | Screenshot |
+|---------|------------|
+| **LFG Creator** | ![LFG Creator Example](./assets/images/lfg-creator-example.png) |
+| **LFG Seeker** | ![LFG Seeker Example](./assets/images/lfg-seeker-example.png) |
+| **Guild Member** | ![Guild Example](./assets/images/guild-example.png) |
+| **Community Member** | ![Community Example](./assets/images/community-example.png) |
+
 
 ### Known Issues
 
@@ -40,17 +86,19 @@ A World of Warcraft addon that adds convenient access to [Check-PvP.fr](https://
 
 ### Supported Contexts
 
-- Target players
-- Party members
-- Raid members
-- Guild members
-- Friends list
-- Battle.net friends
-- Enemy players
-- Other players
-- LFG search results
-- LFG applicants
-- Your own character
+The addon works in multiple contexts as demonstrated in the screenshots above:
+
+- **Guild members** - Right-click in guild roster
+- **Community members** - Right-click in community member list  
+- **LFG creators** - Right-click on group leaders in LFG browser
+- **LFG seekers** - Right-click on players looking for groups
+- **Your own character** - Right-click on yourself
+- **Target players** - Right-click on any targeted player
+- **Party members** - Right-click in party frames
+- **Raid members** - Right-click in raid frames
+- **Friends list** - Right-click on friends
+- **Battle.net friends** - Right-click on Battle.net friends
+- **Enemy players** - Right-click on opposing faction players
 
 ## Requirements
 
@@ -128,6 +176,18 @@ This will show detailed information about:
 3. Commit your changes (`git commit -m 'Add amazing feature'`)
 4. Push to the branch (`git push origin feature/amazing-feature`)
 5. Open a Pull Request
+
+### Adding Screenshots
+
+To help improve the documentation:
+
+1. **Take screenshots** following the guidelines in [`assets/README.md`](./assets/README.md)
+2. **Save images** to `assets/images/` directory
+3. **Use descriptive filenames** (e.g., `context-menu-example.png`)
+4. **Optimize file sizes** (keep under 500KB each)
+5. **Update README** if adding new examples
+
+See [`assets/README.md`](./assets/README.md) for detailed image requirements and guidelines.
 
 ## Support
 
