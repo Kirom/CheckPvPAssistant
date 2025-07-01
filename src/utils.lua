@@ -26,4 +26,4 @@ function ns.utils.GenerateClosure(func)
     return function(owner, rootDescription, contextData)
         return func(owner, rootDescription, contextData)
     end
-end 
+end

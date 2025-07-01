@@ -38,3 +38,6 @@ Thumbs.db
 
 # Cursor files
 .cursor/
+
+# Luacheck files
+luacheck.exe

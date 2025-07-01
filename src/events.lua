@@ -13,7 +13,7 @@ local function InitializeAddon()
 end
 
 -- Event handling function
-local function OnEvent(self, event, ...)
+local function OnEvent(_, event, ...)
     if event == "ADDON_LOADED" then
         local loadedAddonName = ...
         if loadedAddonName == addonName then
@@ -29,4 +29,4 @@ function ns.events.Initialize()
     eventFrame:RegisterEvent("ADDON_LOADED")
     eventFrame:RegisterEvent("PLAYER_LOGIN")
     eventFrame:SetScript("OnEvent", OnEvent)
-end 
+end

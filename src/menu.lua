@@ -45,7 +45,7 @@ local function GetLFGListInfo(owner)
             return ns.utils.GetNameRealm(searchResultInfo.leaderName)
         end
     end
-    
+
     local memberIdx = owner.memberIdx
     if not memberIdx then
         return
@@ -62,7 +62,7 @@ local function GetLFGListInfo(owner)
     if fullName then
         return ns.utils.GetNameRealm(fullName)
     end
-    
+
     return nil, nil
 end
 
@@ -71,12 +71,12 @@ local function GetBNetAccountInfo(accountInfo)
     if not accountInfo or not accountInfo.gameAccountInfo then
         return nil, nil
     end
-    
+
     local gameAccountInfo = accountInfo.gameAccountInfo
     local characterName = gameAccountInfo.characterName
     local realmName = gameAccountInfo.realmName
     local characterLevel = gameAccountInfo.characterLevel
-    
+
     return characterName, realmName, characterLevel
 end
 
@@ -89,9 +89,9 @@ local function GetNameRealmForMenu(owner, rootDescription, contextData)
         end
         return
     end
-    
+
     local name, realm
-    
+
     -- PRIORITY 1: Use contextData.name and contextData.server if both are available
     -- This is the most reliable source for cross-realm players
     if contextData.name and contextData.server then
@@ -100,7 +100,7 @@ local function GetNameRealmForMenu(owner, rootDescription, contextData)
         ns.utils.DebugPrint("Using contextData: name =", name, "server =", realm)
         return name, realm
     end
-    
+
     -- PRIORITY 2: Handle units (target, party members, etc.)
     local unit = contextData.unit
     if unit and UnitExists(unit) then
@@ -114,7 +114,7 @@ local function GetNameRealmForMenu(owner, rootDescription, contextData)
         end
         return name, realm
     end
-    
+
     -- PRIORITY 3: Handle Battle.net friends
     local accountInfo = contextData.accountInfo
     if accountInfo then
@@ -124,13 +124,13 @@ local function GetNameRealmForMenu(owner, rootDescription, contextData)
         end
         return name, realm
     end
-    
+
     -- PRIORITY 4: Handle regular name context (fallback)
     if contextData.name then
         name, realm = ns.utils.GetNameRealm(contextData.name)
         return name, realm
     end
-    
+
     -- PRIORITY 5: Handle friends list
     if contextData.friendsList then
         local friendInfo = C_FriendList.GetFriendInfoByIndex(contextData.friendsList)
@@ -139,7 +139,7 @@ local function GetNameRealmForMenu(owner, rootDescription, contextData)
             return name, realm
         end
     end
-    
+
     return nil, nil
 end
 
@@ -147,12 +147,17 @@ end
 local function AddCheckPvPOption(owner, rootDescription, contextData)
     -- Debug output
     if contextData then
-        ns.utils.DebugPrint("contextData.which =", contextData.which, "contextData.unit =", contextData.unit, "contextData.name =", contextData.name, "contextData.server =", contextData.server)
+        ns.utils.DebugPrint(
+            "contextData.which =", contextData.which, "contextData.unit =", contextData.unit,
+            "contextData.name =", contextData.name, "contextData.server =", contextData.server
+        )
         if contextData.accountInfo then
             ns.utils.DebugPrint("Found accountInfo =", contextData.accountInfo)
             if contextData.accountInfo.gameAccountInfo then
                 local gameInfo = contextData.accountInfo.gameAccountInfo
-                ns.utils.DebugPrint("gameAccountInfo - characterName =", gameInfo.characterName, "realmName =", gameInfo.realmName)
+                ns.utils.DebugPrint(
+                    "gameAccountInfo - characterName =", gameInfo.characterName, "realmName =", gameInfo.realmName
+                )
             end
         end
         if contextData.friendsList then
@@ -161,16 +166,16 @@ local function AddCheckPvPOption(owner, rootDescription, contextData)
     else
         ns.utils.DebugPrint("No contextData, rootDescription.tag =", rootDescription.tag)
     end
-    
+
     -- Check if this is a valid menu for our addon
     if not IsValidMenu(rootDescription, contextData) then
         ns.utils.DebugPrint("Menu not valid")
         return
     end
-    
+
     local name, realm = GetNameRealmForMenu(owner, rootDescription, contextData)
     ns.utils.DebugPrint("Got name =", name, "realm =", realm)
-    
+
     if name and realm then
         selectedName = name
         selectedRealm = realm
@@ -192,14 +197,14 @@ function ns.menu.RegisterMenuHooks()
     -- Check if the new Menu system is available (TWW+)
     if Menu and Menu.ModifyMenu then
         local ModifyMenu = Menu.ModifyMenu
-        
+
         ns.utils.DebugPrint("Menu system found, registering hooks...")
-        
+
         -- Hook LFG frame menus (most important for our use case)
         local success, err = pcall(function()
             ModifyMenu("MENU_LFG_FRAME_SEARCH_ENTRY", ns.utils.GenerateClosure(AddCheckPvPOption))
             ModifyMenu("MENU_LFG_FRAME_MEMBER_APPLY", ns.utils.GenerateClosure(AddCheckPvPOption))
-            
+
             -- Hook other player context menus
             ModifyMenu("MENU_UNIT_PLAYER", ns.utils.GenerateClosure(AddCheckPvPOption))
             ModifyMenu("MENU_UNIT_PARTY", ns.utils.GenerateClosure(AddCheckPvPOption))
@@ -213,7 +218,7 @@ function ns.menu.RegisterMenuHooks()
             ModifyMenu("MENU_UNIT_ENEMY_PLAYER", ns.utils.GenerateClosure(AddCheckPvPOption))
             ModifyMenu("MENU_UNIT_OTHER_PLAYER", ns.utils.GenerateClosure(AddCheckPvPOption))
         end)
-        
+
         if success then
             print("|cff00ff00Check-PvP Assistant|r: Menu hooks registered successfully!")
             return true
@@ -225,4 +230,4 @@ function ns.menu.RegisterMenuHooks()
         print("|cffff0000Check-PvP Assistant|r: Menu system not available! (WoW version may be too old)")
         return false
     end
-end 
+end

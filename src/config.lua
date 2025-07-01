@@ -48,14 +48,14 @@ end
 -- Initialize saved variables and load user config
 local configFrame = CreateFrame("Frame")
 configFrame:RegisterEvent("ADDON_LOADED")
-configFrame:SetScript("OnEvent", function(self, event, addonName)
+configFrame:SetScript("OnEvent", function(_, _, addonName)
     if addonName == "CheckPvPAssistant" then
         -- Initialize saved variables if they don't exist
         CheckPvPAssistantDB = CheckPvPAssistantDB or {}
-        
+
         -- Load user configuration
         LoadUserConfig()
-        
+
         configFrame:UnregisterEvent("ADDON_LOADED")
     end
-end) 
+end)

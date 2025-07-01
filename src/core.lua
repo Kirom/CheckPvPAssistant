@@ -1,4 +1,4 @@
-local addonName, ns = ...
+local _, ns = ...
 
 -- CheckPvPAssistant Core - Main initialization and coordination
 -- This file coordinates all addon modules and handles initialization
@@ -7,7 +7,7 @@ local addonName, ns = ...
 local function Initialize()
     -- Register slash commands
     ns.commands.RegisterSlashCommands()
-    
+
     -- Initialize event handling
     ns.events.Initialize()
 end

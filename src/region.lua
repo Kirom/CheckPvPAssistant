@@ -12,10 +12,10 @@ function ns.region.GetRegion()
     if not guid then
         return "eu", 3 -- fallback
     end
-    
+
     local serverId = tonumber(string.match(guid, "^Player%-(%d+)") or 0) or 0
     local regionId = ns.regionIDs[serverId]
-    
+
     -- Fallback to GetCurrentRegion() but with correct mapping
     if not regionId or regionId < 1 or regionId > #REGION_TO_LTD then
         regionId = GetCurrentRegion()
@@ -25,7 +25,7 @@ function ns.region.GetRegion()
     if not regionId then
         regionId = 3 -- EU fallback
     end
-    
+
     local regionCode = REGION_TO_LTD[regionId] or "eu"
     return regionCode, regionId
 end
@@ -33,4 +33,4 @@ end
 -- Get English realm slug from localized name
 function ns.region.GetRealmSlug(realm)
     return ns.realmSlugs[realm] or realm
-end 
+end
