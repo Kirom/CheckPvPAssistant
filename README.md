@@ -140,6 +140,9 @@ Realm names are automatically translated from WoW's internal format to Check-PvP
 ```
 CheckPvPAssistant/
 ├── CheckPvPAssistant.toc           # Addon metadata and load order
+├── assets/                         # Images and screenshots
+│   ├── images/                     # Image files
+│   └── README.md                   # Image documentation
 ├── src/
 │   ├── config.lua                  # Configuration management
 │   ├── db/
