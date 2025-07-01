@@ -39,6 +39,7 @@ A World of Warcraft addon that adds convenient access to [Check-PvP.fr](https://
 ### Basic Usage Example
 
 **Step 1: Right-click on your character**
+
 ![Self Example](./assets/images/self-example.png)
 *Right-click on your character to see the "Copy Check-PvP URL" option in the context menu*
 
