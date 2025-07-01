@@ -92,7 +92,10 @@ jobs:
 
       - name: Publish to CurseForge
         uses: itsmeow/curseforge-upload@v3
-        if: ${{ secrets.CURSEFORGE_TOKEN }}
+        if: false  # Disabled until secrets are configured
+        env:
+          CURSEFORGE_TOKEN: ${{ secrets.CURSEFORGE_TOKEN }}
+          CURSEFORGE_PROJECT_ID: ${{ secrets.CURSEFORGE_PROJECT_ID }}
         with:
           token: ${{ secrets.CURSEFORGE_TOKEN }}
           project_id: ${{ secrets.CURSEFORGE_PROJECT_ID }}
@@ -105,7 +108,7 @@ jobs:
           release_type: release
 
       - name: Publish to Wago
-        if: ${{ secrets.WAGO_API_TOKEN }}
+        if: false  # Disabled until secrets are configured
         env:
           WAGO_API_TOKEN: ${{ secrets.WAGO_API_TOKEN }}
           WAGO_PROJECT_ID: ${{ secrets.WAGO_PROJECT_ID }}
