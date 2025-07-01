@@ -105,7 +105,7 @@ jobs:
 
       - name: Publish to CurseForge
         uses: itsmeow/curseforge-upload@v3
-        if: false  # Disabled until secrets are configured
+        if: env.CURSEFORGE_TOKEN
         env:
           CURSEFORGE_TOKEN: ${{ secrets.CURSEFORGE_TOKEN }}
           CURSEFORGE_PROJECT_ID: ${{ secrets.CURSEFORGE_PROJECT_ID }}
@@ -121,7 +121,7 @@ jobs:
           release_type: release
 
       - name: Publish to Wago
-        if: false  # Disabled until secrets are configured
+        if: env.WAGO_API_TOKEN
         env:
           WAGO_API_TOKEN: ${{ secrets.WAGO_API_TOKEN }}
           WAGO_PROJECT_ID: ${{ secrets.WAGO_PROJECT_ID }}
@@ -148,8 +148,15 @@ jobs:
           }
           EOF
           
-          # Upload metadata for WowUp (you can host this on GitHub Pages or your own server)
+          # Upload WowUp metadata as release asset
           echo "WowUp metadata created: wowup.json"
+
+      - name: Upload WowUp metadata to release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ steps.extract_version.outputs.tag }}
+          files: wowup.json
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Update package metadata
         run: |

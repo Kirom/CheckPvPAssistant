@@ -24,10 +24,30 @@ A World of Warcraft addon that adds convenient access to [Check-PvP.fr](https://
 
 The addon is automatically distributed to multiple platforms via GitHub Actions:
 
-- **CurseForge**: [CheckPvPAssistant on CurseForge](https://www.curseforge.com/wow/addons/checkpvpassistant) *(Available)*
-- **Wago**: [CheckPvPAssistant on Wago](https://addons.wago.io/addons/checkpvpassistant) *(Available)*
+- **CurseForge**: [Check-PvP Assistant on CurseForge](https://www.curseforge.com/wow/addons/check-pvp-assistant) *(Available)*
+- **Wago**: [Check-PvP Assistant on Wago](https://addons.wago.io/addons/check-pvp-assistant) *(Available)*
 - **WowUp**: Direct installation via GitHub releases *(Available)*
 - **GitHub Releases**: [Latest releases](https://github.com/Kirom/CheckPvPAssistant/releases) *(Always available)*
+
+### Direct Installation from Addon Managers (Recommended)
+
+**CurseForge App:**
+1. Open CurseForge app
+2. Go to "Mods" → "World of Warcraft" → "Browse All"
+3. Search for **"Check-PvP Assistant"**
+4. Click "Install"
+
+**WowUp:**
+1. Open WowUp
+2. Go to "Get Addons" tab
+3. Search for **"Check-PvP Assistant"**
+4. Click "Install"
+
+**Wago:**
+1. Open Wago
+2. Go to "Addons" tab
+3. Search for **"Check-PvP Assistant"**
+4. Click "Install"
 
 ## Usage
 

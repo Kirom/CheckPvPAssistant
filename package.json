@@ -37,11 +37,11 @@
   },
   "distribution": {
     "curseforge": {
-      "projectId": null,
+      "url": "https://www.curseforge.com/wow/addons/check-pvp-assistant",
       "gameVersions": ["110105", "110107"]
     },
     "wago": {
-      "projectId": null
+      "url": "https://addons.wago.io/addons/check-pvp-assistant"
     },
     "wowup": {
       "supported": true
