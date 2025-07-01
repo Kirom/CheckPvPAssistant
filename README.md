@@ -5,7 +5,7 @@ A World of Warcraft addon that adds convenient access to [Check-PvP.fr](https://
 ## Features
 
 - **Right-click integration**: Access Check-PvP URLs directly from player context menus
-- **Comprehensive coverage**: Works on targets, party members, raid members, guild members, friends, enemies, and yourself
+- **Comprehensive coverage**: Works on LFG menu, targets, party members, raid members, guild members, friends, enemies, and yourself
 - **LFG integration**: Generate URLs for players in LFG search results and applicants
 - **Cross-realm support**: Properly handles players from different realms
 - **Region detection**: Automatically detects your region (US, EU, KR, TW, CN)
@@ -217,11 +217,20 @@ To help improve the documentation:
 
 See [`assets/README.md`](./assets/README.md) for detailed image requirements and guidelines.
 
-## Support
-
-- **Issues**: Report bugs or request features on [GitHub Issues](https://github.com/Kirom/CheckPvPAssistant/issues)
-- **Discord**: TBA
-
 ## Changelog
 
 See [CHANGELOG.md](CHANGELOG.md) for a detailed list of all changes and updates. 
+
+## 💝 Acknowledgments
+
+Special thanks to the Check-PvP.fr team for providing the excellent PvP statistics platform that makes this addon valuable to the WoW PvP community.
+
+## 📞 Support & Feedback
+
+For bug reports, feature requests, or general feedback:
+- **GitHub Issues** - [CheckPvPAssistant Issues](https://github.com/Kirom/CheckPvPAssistant/issues)
+- **Documentation** - See README.md for detailed usage instructions and screenshots
+
+---
+
+**Happy PvP hunting!** 🗡️⚔️
