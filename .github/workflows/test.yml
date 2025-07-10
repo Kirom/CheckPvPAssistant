@@ -39,7 +39,7 @@ jobs:
           sudo luarocks install luacheck
           
           echo "Running luacheck on Lua files..."
-          find src/ -name "*.lua" -exec luacheck {} \; || echo "⚠️  Luacheck found issues (non-blocking)"
+          find src/ -name "*.lua" -exec luacheck {} \;
 
       - name: Validate file structure
         run: |
