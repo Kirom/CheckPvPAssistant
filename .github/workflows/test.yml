@@ -41,6 +41,7 @@ jobs:
           echo "Running luacheck on Lua files..."
           if ! luacheck src/; then
             echo "::error:: Lua syntax validation failed. Please fix the issues before releasing."
+            exit 1
           fi
 
       - name: Validate file structure
