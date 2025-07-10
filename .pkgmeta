@@ -1,0 +1,21 @@
+package-as: CheckPvPAssistant
+
+manual-changelog:
+  filename: CHANGELOG.md
+  markup-type: markdown
+
+ignore:
+  - README.md
+  - CHANGELOG.md
+  - CONTRIBUTING.md
+  - LICENSE
+  - TODO.md
+  - assets/
+  - docs/
+  - scripts/
+  - package.json
+  - .github/
+  - .gitignore
+  - .pkgmeta
+
+license-output: LICENSE 
