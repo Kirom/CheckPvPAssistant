@@ -2,7 +2,6 @@
 
 ## High Priority
 
-1. **Add CurseForge / WowUp distribution**  -- Test with the next release.
 
 ## Medium Priority
 
