@@ -9,6 +9,9 @@
 
 ## SavedVariables: CheckPvPAssistantDB
 
+## X-Curse-Project-ID: 1298008
+## X-Wago-ID: b6XVlPGp
+
 # Config
 src/config.lua
 
