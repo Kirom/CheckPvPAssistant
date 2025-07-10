@@ -39,10 +39,10 @@ jobs:
           sudo luarocks install luacheck
 
           echo "Running luacheck on Lua files..."
-          luacheck src/ || {
-            echo "Lua syntax validation failed. Please fix the issues before releasing." >&2
+          if ! luacheck src/; then
+            echo "::error:: Lua syntax validation failed. Please fix the issues before releasing."
             exit 1
-          }
+          fi
 
       - name: Validate file structure
         run: |
