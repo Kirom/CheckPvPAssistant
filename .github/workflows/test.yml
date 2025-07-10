@@ -37,9 +37,12 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y luarocks
           sudo luarocks install luacheck
-          
+
           echo "Running luacheck on Lua files..."
-          luacheck src/
+          if ! luacheck src/; then
+            echo "::error file=src::Luacheck failed! See above for details."
+            exit 1
+          fi
 
       - name: Validate file structure
         run: |
