@@ -16,6 +16,26 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 - TBD
 
+## [1.0.1] - 2025-07-10
+
+### Added
+- **Addon icon** - Added visual icon for the addon (assets/images/addon-icon.png)
+
+### Changed
+- **Improved error messages** - Refactored error messages in menu.lua for better readability and 120-character line formatting
+- **Enhanced debug output** - Improved debug information in menu.lua and utils.lua for better traceability when retrieving player names and realms
+- **Enhanced CI/CD pipeline** - Improved GitHub Actions workflow with better luacheck error reporting and validation steps
+- **Code quality improvements** - Enhanced luacheck validation process for better code quality assurance
+
+### Fixed
+- **🔧 CRITICAL: Realm name formatting corrections** - Fixed realm database (db_realms.lua) to preserve special characters (apostrophes, parentheses) in realm names:
+  - `Aggra(Português)` now correctly mapped (was causing 404 errors)
+  - `Ahn'Qiraj`, `Al'Akir`, `Al'ar` now preserve apostrophes
+  - `Blade's Edge` now correctly formatted
+  - Over 100+ realm names corrected for accurate Check-PvP URL generation
+  - **This fixes 404 errors when accessing Check-PvP URLs for characters on realms with special characters**
+- **Pipeline reliability** - Fixed luacheck validation step in GitHub Actions workflow to provide clearer error reporting
+
 ## [1.0.0] - 2025-07-01
 
 ### Added
