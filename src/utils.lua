@@ -12,6 +12,7 @@ end
 
 -- Parse name and realm from full name
 function ns.utils.GetNameRealm(fullName)
+    ns.utils.DebugPrint("GetNameRealm: fullName =", fullName)
     if not fullName then return end
     local name, realm = string.match(fullName, "^([^-]+)-(.+)$")
     if not name then

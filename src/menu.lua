@@ -82,9 +82,12 @@ end
 
 -- Get name and realm from menu context
 local function GetNameRealmForMenu(owner, rootDescription, contextData)
+
+    -- Handle LFG list info
     if not contextData then
         local tagType = validTags[rootDescription.tag]
         if tagType == 1 then
+            ns.utils.DebugPrint("Data found in LFG list info")
             return GetLFGListInfo(owner)
         end
         return
@@ -92,50 +95,53 @@ local function GetNameRealmForMenu(owner, rootDescription, contextData)
 
     local name, realm
 
-    -- PRIORITY 1: Use contextData.name and contextData.server if both are available
+    -- Use contextData.name and contextData.server if both are available
     -- This is the most reliable source for cross-realm players
     if contextData.name and contextData.server then
         name = contextData.name
         realm = contextData.server
-        ns.utils.DebugPrint("Using contextData: name =", name, "server =", realm)
+        ns.utils.DebugPrint("Data found in contextData: name =", name, "server =", realm)
         return name, realm
     end
 
-    -- PRIORITY 2: Handle units (target, party members, etc.)
+    -- Handle units (target, party members, etc.)
     local unit = contextData.unit
     if unit and UnitExists(unit) then
         name, realm = ns.utils.GetNameRealm(UnitName(unit))
         -- If we have contextData.server, prefer it over parsed realm
         if contextData.server then
             realm = contextData.server
-            ns.utils.DebugPrint("Using unit name with contextData server: name =", name, "server =", realm)
+            ns.utils.DebugPrint("Data found in unit name with contextData server: name =", name, "server =", realm)
         else
-            ns.utils.DebugPrint("Using unit data: name =", name, "realm =", realm)
+            ns.utils.DebugPrint("Data found in unit data: name =", name, "realm =", realm)
         end
         return name, realm
     end
 
-    -- PRIORITY 3: Handle Battle.net friends
+    -- Handle Battle.net friends
     local accountInfo = contextData.accountInfo
     if accountInfo then
         name, realm = GetBNetAccountInfo(accountInfo)
         if not realm then
             return -- Skip if no realm info (classic characters on retail)
         end
+        ns.utils.DebugPrint("Data found in BNet friend info: name =", name, "realm =", realm)
         return name, realm
     end
 
-    -- PRIORITY 4: Handle regular name context (fallback)
+    -- Handle regular name context (fallback)
     if contextData.name then
         name, realm = ns.utils.GetNameRealm(contextData.name)
+        ns.utils.DebugPrint("Data found in regular name context: name =", name, "realm =", realm)
         return name, realm
     end
 
-    -- PRIORITY 5: Handle friends list
+    -- Handle friends list
     if contextData.friendsList then
         local friendInfo = C_FriendList.GetFriendInfoByIndex(contextData.friendsList)
         if friendInfo and friendInfo.name then
             name, realm = ns.utils.GetNameRealm(friendInfo.name)
+            ns.utils.DebugPrint("Data found in friends list: name =", name, "realm =", realm)
             return name, realm
         end
     end
