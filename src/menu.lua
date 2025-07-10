@@ -229,11 +229,18 @@ function ns.menu.RegisterMenuHooks()
             ns.utils.DebugPrint("|cff00ff00Check-PvP Assistant|r: Menu hooks registered successfully!")
             return true
         else
-            print("|cffff0000Check-PvP Assistant|r: Error registering menu hooks:", err, "Please report this to the developer.")
+            print(
+                "|cffff0000Check-PvP Assistant|r: Error registering menu hooks:",
+                err,
+                "Please report this to the developer."
+            )
             return false
         end
     else
-        print("|cffff0000Check-PvP Assistant|r: Menu system not available! (WoW version may be too old). Please report this to the developer.")
+        print(
+            "|cffff0000Check-PvP Assistant|r: Menu system not available! (WoW version may be too old).",
+            "Please report this to the developer."
+        )
         return false
     end
 end
