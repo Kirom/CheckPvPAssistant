@@ -10,12 +10,13 @@ ignore:
   - CONTRIBUTING.md
   - LICENSE
   - TODO.md
-  - assets/
-  - docs/
-  - scripts/
+  - assets
+  - docs
+  - scripts
   - package.json
-  - .github/
+  - .github
   - .gitignore
   - .pkgmeta
+  - ReleaseNotes
 
 license-output: LICENSE 
