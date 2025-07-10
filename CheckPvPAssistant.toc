@@ -2,7 +2,7 @@
 ## Title: Check-PvP Assistant
 ## Notes: Addon that adds "Copy Check-PvP URL" option to player dropdown menus in LFG, and other menus for easy access to Check-PvP armory.
 ## Author: Kirom
-## Version: 1.0.0
+## Version: 1.0.1
 ## IconTexture: Interface\Icons\Achievement_featsofstrength_gladiator_07
 ## License: MIT
 ## Category: PvP
