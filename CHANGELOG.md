@@ -5,6 +5,20 @@ All notable changes to CheckPvPAssistant will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.1.0] - 2025-07-12
+
+### Added
+- **Copy mode switching** - New commands to switch between copying full URLs and name-realm format:
+  - `/checkpvp useurl` - Copy full Check-PvP URLs
+  - `/checkpvp usename` - Copy name-realm format (e.g., "PlayerName-RealmName") **[DEFAULT]**
+  - `/checkpvp mode` - Show current copy mode and usage instructions
+- **Persistent copy mode** - Copy mode preference saved between game sessions
+
+### Changed
+- **Default copy mode** - Changed from URL mode to name-realm mode to match the original Check-PvP addon
+- **Unified menu text** - Context menu always shows "Check PvP" regardless of copy mode
+- **Enhanced command help** - Updated `/checkpvp help` to include new copy mode commands and show default mode
+
 ## [1.0.1] - 2025-07-10
 
 ### Added
