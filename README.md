@@ -69,11 +69,21 @@ The addon is automatically distributed to multiple platforms via GitHub Actions:
 ## Usage
 
 1. **Right-click on any player** (target, party member, raid member, guild member, friend, enemy, or yourself)
-2. Look for **"Copy Check-PvP URL"** in the context menu
-3. **Click the option** to open a dialog with the Check-PvP.fr URL
-4. **Press Ctrl+C** to copy the URL to your clipboard
+2. Look for **"Check PvP"** in the context menu
+3. **Click the option** to open a dialog with either the name-realm format or Check-PvP.fr URL (depending on your copy mode)
+4. **Press Ctrl+C** to copy the text to your clipboard
 5. **Press Enter or Escape** to close the dialog
-6. Open the URL in your browser to view the player's PvP statistics
+6. If copying URLs: Open the URL in your browser to view the player's PvP statistics
+7. If copying name-realm: Use the format for Discord, chat, or other applications
+
+### Copy Modes
+
+The addon supports two copy modes that can be switched using slash commands:
+
+- **Name-Realm Mode** (default): Copies "PlayerName-RealmName" format for easy sharing in chat
+- **URL Mode**: Copies full Check-PvP.fr URLs for direct browser access
+
+Use `/checkpvp usename` or `/checkpvp useurl` to switch between modes.
 
 > **Note**: If the website shows "character not found", don't worry! See the detailed step-by-step guide with screenshots in the [Character Not Found section](#character-not-found---step-by-step-fix) below to manually search for the character (this will fetch the latest data from Blizzard's servers).
 
@@ -84,15 +94,27 @@ The addon is automatically distributed to multiple platforms via GitHub Actions:
 **Step 1: Right-click on your character**
 
 ![Self Example](./assets/images/self-example.png)
-*Right-click on your character to see the "Copy Check-PvP URL" option in the context menu*
+*Right-click on your character to see the "Check PvP" option in the context menu*
 
-**Step 2: URL Dialog appears**
-![URL Dialog](./assets/images/url-dialog.png)
-*The dialog appears with the Check-PvP.fr URL ready to copy (Press Ctrl+C to copy)*
+**Step 2: Check PvP Dialog appears**
 
-**Step 3: Successful Check-PvP.fr result**
+The dialog that appears depends on your current copy mode:
+
+**Name-Realm Mode (default):**
+![Name-Realm Dialog](./assets/images/copy-name-realm-dialog.png)
+*Dialog showing name-realm format ready to copy (Press Ctrl+C to copy)*
+
+**URL Mode:**
+![URL Dialog](./assets/images/copy-url-dialog.png)
+*Dialog showing Check-PvP.fr URL ready to copy (Press Ctrl+C to copy)*
+
+**Step 3: Using the copied content**
+
+- **If in Name-Realm mode**: Use the "PlayerName-RealmName" format to paste into website search bar and open character profile
+- **If in URL mode**: Open the URL in your browser to view character profile
+
 ![Successful Website Result](./assets/images/website-success-example.png)
-*Open the URL in your browser to view the player's PvP statistics and profile*
+*Example of Check-PvP.fr showing player's PvP statistics and profile*
 
 ### Character Not Found - Step by Step Fix
 If the website shows "character not found", you can manually search for them (this will fetch the latest data on the website and make the profile appear):
@@ -143,6 +165,7 @@ The addon works in multiple contexts as demonstrated in the screenshots above:
 - **Friends list** - Right-click on friends
 - **Battle.net friends** - Right-click on Battle.net friends
 - **Enemy players** - Right-click on opposing faction players
+- **In-chat players** - Right-click on any player in chat
 
 ## Requirements
 
@@ -157,11 +180,17 @@ The addon has a simple debug mode that can be toggled using slash commands:
 
 - `/checkpvp` or `/cpvp` - Show available commands
 - `/checkpvp debug` - Toggle debug output
+- `/checkpvp useurl` - Copy full Check-PvP URLs
+- `/checkpvp usename` - Copy name-realm format (e.g., "PlayerName-RealmName") (default)
+- `/checkpvp mode` - Show current copy mode
 
 ### Examples
 
 ```
 /checkpvp debug        # Toggle debug mode
+/checkpvp usename      # Copy name-realm format (default)
+/checkpvp useurl       # Copy full URLs to Check-PvP.fr
+/checkpvp mode         # Show current copy mode
 ```
 
 Debug setting is automatically saved and will persist between game sessions.
@@ -201,9 +230,12 @@ The project uses GitHub Actions for:
 ```
 CheckPvPAssistant/
 ├── CheckPvPAssistant.toc           # Addon metadata and load order
+├── .github/                        # GitHub Actions configuration
 ├── assets/                         # Images and screenshots
 │   ├── images/                     # Image files
 │   └── README.md                   # Image documentation
+├── ReleaseNotes/                   # Release notes for each version
+├── scripts/                        # Scripts for automated testing, release, and package validation
 ├── src/
 │   ├── config.lua                  # Configuration management
 │   ├── db/
@@ -219,7 +251,9 @@ CheckPvPAssistant/
 │   └── core.lua                    # Main initialization and coordination
 ├── CHANGELOG.md                    # Version history and changes
 ├── README.md                       # This file
+├── LICENSE                         # License file
 └── TODO.md                         # Future development plans
+
 ```
 
 ### Debug Mode

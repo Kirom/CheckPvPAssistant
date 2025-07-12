@@ -4,10 +4,10 @@ local _, ns = ...
 ns.ui = {}
 
 -- Show copy URL dialog
-function ns.ui.ShowCopyURLDialog(url)
-    if not url then return end
+function ns.ui.ShowCopyURLDialog(text)
+    if not text then return end
 
-    -- Create a simple frame to display the URL
+    -- Create a simple frame to display the text
     local frame = CreateFrame("Frame", "CheckPvPCopyFrame", UIParent, "BasicFrameTemplateWithInset")
     frame:SetSize(500, 150)
     frame:SetPoint("CENTER")
@@ -28,7 +28,7 @@ function ns.ui.ShowCopyURLDialog(url)
     local editBox = CreateFrame("EditBox", nil, frame, "InputBoxTemplate")
     editBox:SetSize(460, 30)
     editBox:SetPoint("CENTER", frame, "CENTER", 0, 10)
-    editBox:SetText(url)
+    editBox:SetText(text)
     editBox:SetAutoFocus(true)
     editBox:HighlightText()
     editBox:SetScript("OnEscapePressed", function() frame:Hide() end)

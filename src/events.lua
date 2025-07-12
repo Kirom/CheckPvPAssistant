@@ -20,7 +20,10 @@ local function OnEvent(_, event, ...)
             InitializeAddon()
         end
     elseif event == "PLAYER_LOGIN" then
-        print("|cff00ff00Check-PvP Assistant|r addon loaded successfully!")
+        print(
+            "|cff00ff00Check-PvP Assistant|r addon loaded successfully!\n" ..
+            "Type |cffffcc00/checkpvp|r or |cffffcc00/cpvp|r for options."
+        )
     end
 end
 

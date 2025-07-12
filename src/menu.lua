@@ -187,9 +187,9 @@ local function AddCheckPvPOption(owner, rootDescription, contextData)
         selectedRealm = realm
         rootDescription:CreateDivider()
         rootDescription:CreateButton(ns.config.MENU_TEXT, function()
-            local url = ns.url.GetCheckPvPURL(selectedName, selectedRealm)
-            if url then
-                ns.ui.ShowCopyURLDialog(url)
+            local copyText = ns.url.GetCopyText(selectedName, selectedRealm)
+            if copyText then
+                ns.ui.ShowCopyURLDialog(copyText)
             end
         end)
         ns.utils.DebugPrint("Added menu option for", name, "-", realm)

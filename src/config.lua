@@ -8,12 +8,13 @@ ns.config = {}
 
 -- Default configuration values
 local defaults = {
-    DEBUG = false,                           -- Set to true to enable debug output
+    DEBUG = false,                                -- Set to true to enable debug output
+    COPY_MODE = "name",                           -- Copy mode: "url" for full URL, "name" for name-realm format
 }
 
 -- Fixed settings (not user-configurable)
-ns.config.MENU_TEXT = "Copy Check-PvP URL"        -- Text shown in context menus
-ns.config.DIALOG_TITLE = "Check-PvP URL"          -- Title of the URL dialog
+ns.config.MENU_TEXT = "Check PvP"                 -- Text shown in context menus
+ns.config.DIALOG_TITLE = "Check PvP"              -- Title of the URL dialog
 ns.config.BASE_URL = "https://check-pvp.fr"       -- Base URL for Check-PvP website
 ns.config.FRAME_STRATA = "DIALOG"                 -- Frame strata for URL dialog
 ns.config.FRAME_LEVEL = 100                       -- Frame level for URL dialog
@@ -27,7 +28,7 @@ end
 local function LoadUserConfig()
     if CheckPvPAssistantDB then
         for key, value in pairs(CheckPvPAssistantDB) do
-            if defaults[key] ~= nil then  -- Only load known config keys
+            if defaults[key] ~= nil then          -- Only load known config keys
                 ns.config[key] = value
             end
         end
