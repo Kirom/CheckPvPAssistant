@@ -94,6 +94,7 @@ Use `/checkpvp usename` or `/checkpvp useurl` to switch between modes.
 **Step 1: Right-click on your character**
 
 ![Self Example](./assets/images/self-example.png)
+
 *Right-click on your character to see the "Check PvP" option in the context menu*
 
 **Step 2: Check PvP Dialog appears**
@@ -101,11 +102,15 @@ Use `/checkpvp usename` or `/checkpvp useurl` to switch between modes.
 The dialog that appears depends on your current copy mode:
 
 **Name-Realm Mode (default):**
+
 ![Name-Realm Dialog](./assets/images/copy-name-realm-dialog.png)
+
 *Dialog showing name-realm format ready to copy (Press Ctrl+C to copy)*
 
 **URL Mode:**
+
 ![URL Dialog](./assets/images/copy-url-dialog.png)
+
 *Dialog showing Check-PvP.fr URL ready to copy (Press Ctrl+C to copy)*
 
 **Step 3: Using the copied content**
