@@ -5,6 +5,10 @@
 
 ## Medium Priority
 
+1. **Copy Dialog Enhancement**
+   - Add option to auto-close copy dialog after text is copied (Ctrl+C)
+   - Implement toggle functionality for auto-close behavior
+   - Consider default behavior: auto-close ON by default for better UX, but provide toggle for users who prefer manual control
 
 ## Low Priority
 
