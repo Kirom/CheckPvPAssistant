@@ -1,4 +1,5 @@
--- Taken from RaiderIO/db/db_classic_regions.lua and modified with respect to Check-PvP-Classic.fr website format @2025-07-18
+-- Taken from RaiderIO/db/db_classic_regions.lua and modified
+-- with respect to Check-PvP-Classic.fr website format @2025-07-18
 
 local _, ns = ...
 

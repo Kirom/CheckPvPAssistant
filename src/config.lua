@@ -23,7 +23,7 @@ local function GetBaseURL()
     -- Use WOW_PROJECT_ID for reliable version detection
     -- Reference: https://warcraft.wiki.gg/wiki/WOW_PROJECT_ID
     local projectID = WOW_PROJECT_ID
-    
+
     if projectID == 19 then -- WOW_PROJECT_MISTS_CLASSIC
         -- Mists of Pandaria Classic
         return "https://check-pvp-classic.fr"

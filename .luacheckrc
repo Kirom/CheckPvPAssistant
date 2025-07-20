@@ -43,6 +43,7 @@ read_globals = {
     "C_FriendList",
     "UnitExists",
     "GetCurrentRegion",
+    "WOW_PROJECT_ID",
 
     -- Menu constants
     "MENU_UNIT_PLAYER",
