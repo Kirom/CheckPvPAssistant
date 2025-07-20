@@ -23,9 +23,14 @@ validate_version() {
     fi
 }
 
-# Get current version from TOC
-CURRENT_VERSION=$(grep "^## Version:" CheckPvPAssistant.toc | cut -d: -f2 | tr -d ' ')
-echo -e "${BLUE}📋 Current version: ${GREEN}$CURRENT_VERSION${NC}"
+# Get current version from package.json
+if [ -f "package.json" ]; then
+    CURRENT_VERSION=$(grep '"version":' package.json | cut -d'"' -f4)
+    echo -e "${BLUE}📋 Current version from package.json: ${GREEN}$CURRENT_VERSION${NC}"
+else
+    echo -e "${RED}❌ package.json not found!${NC}"
+    exit 1
+fi
 
 # Check if we have uncommitted changes
 if ! git diff-index --quiet HEAD --; then
@@ -64,17 +69,12 @@ fi
 
 echo -e "${BLUE}📝 Updating version from $CURRENT_VERSION to $NEW_VERSION...${NC}"
 
-# Update TOC file
-sed -i "s/^## Version:.*/## Version: $NEW_VERSION/" CheckPvPAssistant.toc
-
-# Update package.json if it exists
-if [ -f "package.json" ]; then
-    sed -i "s/\"version\": \".*\"/\"version\": \"$NEW_VERSION\"/" package.json
-fi
+# Update package.json only
+sed -i "s/\"version\": \".*\"/\"version\": \"$NEW_VERSION\"/" package.json
 
 # Show changes
 echo -e "${BLUE}📋 Changes made:${NC}"
-git diff CheckPvPAssistant.toc package.json 2>/dev/null || git diff CheckPvPAssistant.toc
+git diff package.json
 
 # Confirm changes
 echo -e "\n${YELLOW}🤔 Do you want to commit these changes and create release v$NEW_VERSION?${NC}"
@@ -83,14 +83,14 @@ echo
 
 if [[ ! $REPLY =~ ^[Yy]$ ]]; then
     echo -e "${YELLOW}🔙 Reverting changes...${NC}"
-    git checkout -- CheckPvPAssistant.toc package.json 2>/dev/null || git checkout -- CheckPvPAssistant.toc
+    git checkout -- package.json
     echo -e "${BLUE}✅ Changes reverted. Release cancelled.${NC}"
     exit 1
 fi
 
 # Commit version bump
 echo -e "${BLUE}💾 Committing version bump...${NC}"
-git add CheckPvPAssistant.toc package.json 2>/dev/null || git add CheckPvPAssistant.toc
+git add package.json
 git commit -m "Bump version to $NEW_VERSION"
 
 # Create and push tag
