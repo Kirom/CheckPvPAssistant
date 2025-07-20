@@ -2,9 +2,8 @@
 
 A World of Warcraft addon that adds convenient access to [Check-PvP.fr](https://check-pvp.fr/) player profiles through right-click context menus. Supports LFG search results and applicants.
 
-<span style="color:#3598db">MoP Classic support coming soon!</span>
+**NEW in v1.2.0: Complete Mists of Pandaria Classic support!** The addon now works seamlessly across both Retail and MoP Classic with automatic version detection.
 
-**NEW in v1.1.0**: Choose between copying name-realm format or full URLs with flexible copy modes!
 
 ## 🎯 Key Features
 
@@ -16,15 +15,9 @@ A World of Warcraft addon that adds convenient access to [Check-PvP.fr](https://
 *   **Realm translation**: Converts internal realm names to Check-PvP.fr format
 *   **Dual Copy Modes**: Switch between name-realm format (default) and full URL copying
 *   **Persistent settings**: Your copy mode preference is saved between sessions
+*   **Version-Specific URLs**: Automatically uses the correct Check-PvP URL for your game version
 
-## 🆕 What's New in v1.1.0
-
-### **Copy Mode Switching**
-
-*   **Name-Realm Mode** (NEW DEFAULT): Copies "PlayerName-RealmName" format for easy pasting into Check-PvP.fr search or Discord/chat
-*   **URL Mode**: Copies full Check-PvP.fr URLs for direct browser access
-
-### **New Slash Commands**
+### **Available Slash Commands**
 
 *   `/checkpvp usename` - Switch to name-realm format copying (default)
 *   `/checkpvp useurl` - Switch to URL copying
@@ -120,13 +113,15 @@ The addon works in multiple contexts as demonstrated in the screenshots above:
 *   **Party members** - Right-click in party frames
 *   **Raid members** - Right-click in raid frames
 *   **Friends list** - Right-click on friends
-*   **Battle.net friends** - Right-click on Battle.net friends
+*   **Battle.Net friends** - Right-click on Battle.Net friends
 *   **Enemy players** - Right-click on opposing faction players
 
 ## 🔧 Requirements
 
-*   **World of Warcraft**: The War Within (11.0+) or later
-*   **Menu System**: Uses the new Menu API introduced in TWW
+*   **World of Warcraft**: 
+    *   **Retail**: The War Within (11.1.7+) or later
+    *   **MoP Classic**: Mists of Pandaria Classic (5.5.0) or later
+*   **Menu System**: Uses the new Menu API introduced in TWW (Retail) and compatible with MoP Classic
 
 ## 📞 Support & Feedback
 
