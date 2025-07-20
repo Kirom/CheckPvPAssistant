@@ -11,8 +11,8 @@
 [![CurseForge](https://img.shields.io/badge/CurseForge-Download-orange?&logo=curseforge)](https://www.curseforge.com/wow/addons/check-pvp-assistant)
 [![Wago](https://img.shields.io/badge/Wago-Install-blue?)](https://addons.wago.io/addons/check-pvp-assistant)
 
-[![World of Warcraft](https://img.shields.io/badge/World%20of%20Warcraft-The%20War%20Within-0084ff?&logo=battle.net)](https://worldofwarcraft.com)
-[![Interface Version](https://img.shields.io/badge/Game%20Version-11.1.5%20|%2011.1.7-brightgreen)](https://github.com/Kirom/CheckPvPAssistant)
+[![World of Warcraft](https://img.shields.io/badge/World%20of%20Warcraft-The%20War%20Within%20%7C%20MoP%20Classic-0084ff?&logo=battle.net)](https://worldofwarcraft.com)
+[![Interface Version](https://img.shields.io/badge/Game%20Version-11.1.7%20|%205.5.0-brightgreen)](https://github.com/Kirom/CheckPvPAssistant)
 [![GitHub issues](https://img.shields.io/github/issues/Kirom/CheckPvPAssistant)](https://github.com/Kirom/CheckPvPAssistant/issues)
 
 </div>
@@ -26,25 +26,16 @@ A World of Warcraft addon that adds convenient access to [Check-PvP.fr](https://
 - **LFG integration**: Generate URLs for players in LFG search results and applicants
 - **Cross-realm support**: Properly handles players from different realms
 - **Region detection**: Automatically detects your region (US, EU, KR, TW, CN)
-- **Realm translation**: Converts internal realm names to Check-PvP.fr format
 
 ## Installation
-
-### Manual Installation
-1. Download the latest release
-2. Extract the `CheckPvPAssistant` folder to your WoW AddOns directory:
-   - **Windows**: `World of Warcraft\_retail_\Interface\AddOns\`
-   - **Mac**: `Applications/World of Warcraft/_retail_/Interface/AddOns/`
-3. Restart World of Warcraft or reload your UI (`/reload`)
 
 ### Automated Distribution Platforms
 
 The addon is automatically distributed to multiple platforms via GitHub Actions:
 
-- **CurseForge**: [Check-PvP Assistant on CurseForge](https://www.curseforge.com/wow/addons/check-pvp-assistant) *(Available)*
-- **Wago**: [Check-PvP Assistant on Wago](https://addons.wago.io/addons/check-pvp-assistant) *(Available)*
-- **WowUp**: Direct installation via GitHub releases *(Available)*
-- **GitHub Releases**: [Latest releases](https://github.com/Kirom/CheckPvPAssistant/releases) *(Always available)*
+- **CurseForge**: [Check-PvP Assistant on CurseForge](https://www.curseforge.com/wow/addons/check-pvp-assistant)
+- **Wago**: [Check-PvP Assistant on Wago](https://addons.wago.io/addons/check-pvp-assistant)
+- **WowUp**: Direct installation via GitHub releases
 
 ### Direct Installation from Addon Managers (Recommended)
 
@@ -213,16 +204,6 @@ Realm names are automatically translated from WoW's internal format to Check-PvP
 
 ## Development
 
-### Quick Start
-
-```bash
-# Test package locally
-./scripts/package.sh
-
-# Create a new release
-./scripts/release.sh 1.0.1
-```
-
 ### Automated CI/CD
 
 The project uses GitHub Actions for:
@@ -234,7 +215,8 @@ The project uses GitHub Actions for:
 ### Project Structure
 ```
 CheckPvPAssistant/
-├── CheckPvPAssistant.toc           # Addon metadata and load order
+├── CheckPvPAssistant.toc           # Retail addon metadata and load order
+├── CheckPvPAssistant_Classic.toc   # MoP Classic addon metadata and load order
 ├── .github/                        # GitHub Actions configuration
 ├── assets/                         # Images and screenshots
 │   ├── images/                     # Image files
@@ -242,10 +224,12 @@ CheckPvPAssistant/
 ├── ReleaseNotes/                   # Release notes for each version
 ├── scripts/                        # Scripts for automated testing, release, and package validation
 ├── src/
-│   ├── config.lua                  # Configuration management
+│   ├── config.lua                  # Configuration management and version detection
 │   ├── db/
-│   │   ├── db_realms.lua          # Realm name translations (1000+ realms)
-│   │   └── db_regions.lua         # Region ID mappings
+│   │   ├── db_realms.lua           # Retail realm name translations
+│   │   ├── db_classic_realms.lua   # MoP Classic realm additions
+│   │   ├── db_regions.lua          # Retail region ID mappings
+│   │   └── db_classic_regions.lua  # MoP Classic region additions
 │   ├── utils.lua                   # Debug utilities and helpers
 │   ├── region.lua                  # Region detection logic
 │   ├── url.lua                     # URL generation logic

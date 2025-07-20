@@ -15,9 +15,28 @@ local defaults = {
 -- Fixed settings (not user-configurable)
 ns.config.MENU_TEXT = "Check PvP"                 -- Text shown in context menus
 ns.config.DIALOG_TITLE = "Check PvP"              -- Title of the URL dialog
-ns.config.BASE_URL = "https://check-pvp.fr"       -- Base URL for Check-PvP website
 ns.config.FRAME_STRATA = "DIALOG"                 -- Frame strata for URL dialog
 ns.config.FRAME_LEVEL = 100                       -- Frame level for URL dialog
+
+-- Function to detect game version and set appropriate base URL
+local function GetBaseURL()
+    -- Use WOW_PROJECT_ID for reliable version detection
+    -- Reference: https://warcraft.wiki.gg/wiki/WOW_PROJECT_ID
+    local projectID = WOW_PROJECT_ID
+    
+    if projectID == 19 then -- WOW_PROJECT_MISTS_CLASSIC
+        -- Mists of Pandaria Classic
+        return "https://check-pvp-classic.fr"
+    elseif projectID == 1 then -- WOW_PROJECT_MAINLINE
+        -- Retail (TWW and future expansions)
+        return "https://check-pvp.fr"
+    else
+        -- Fallback for unsupported project IDs - assume retail
+        return "https://check-pvp.fr"
+    end
+end
+
+ns.config.BASE_URL = GetBaseURL()                  -- Base URL for Check-PvP website (version-dependent)
 
 -- Initialize config with defaults
 for key, value in pairs(defaults) do

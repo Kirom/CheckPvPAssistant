@@ -5,6 +5,30 @@ All notable changes to CheckPvPAssistant will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.2.0] - 2025-07-20
+
+### Added
+
+#### 🎉 Mists of Pandaria Classic Version Support
+
+This major update introduces **complete Mists of Pandaria Classic version support**, making CheckPvPAssistant the first addon to seamlessly work across both versions with automatic detection. **MoP Classic is now fully functional!**
+
+#### Automatic Version Detection
+- **Smart Detection** - Uses official Blizzard `WOW_PROJECT_ID` constants for reliable version identification
+- **Zero Configuration** - Automatically detects your game version and uses appropriate settings
+- **Future-Proof** - Built to handle future WoW versions and expansions
+
+#### Version-Specific URLs
+- **Retail** → `https://check-pvp.fr`
+- **MoP Classic** → `https://check-pvp-classic.fr`
+- **Dual-version support** - Added support for Mists of Pandaria Classic
+  - Automatic version detection using official Blizzard `WOW_PROJECT_ID` constants
+  - Version-specific URLs: `check-pvp.fr` for Retail, `check-pvp-classic.fr` for MoP Classic
+  - Separate TOC files: `CheckPvPAssistant.toc` (Retail) and `CheckPvPAssistant-Classic.toc` (MoP Classic)
+
+### Changed
+- **File organization** - Renamed database files to `db_classic_*` pattern for better organization
+
 ## [1.1.0] - 2025-07-12
 
 ### Added

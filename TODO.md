@@ -10,15 +10,19 @@
    - Implement toggle functionality for auto-close behavior
    - Consider default behavior: auto-close ON by default for better UX, but provide toggle for users who prefer manual control
 
+2. **Region Testing**
+   - Test Retail KR region functionality
+   - Test Retail CN region functionality
+   - Test MoP Classic KR region functionality
+   - Test MoP Classic CN region functionality
+   - Test MoP Classic TW region functionality
+   - Test MoP Classic US region functionality
+   - Verify region detection accuracy
+
 ## Low Priority
 
 1. **Feature Enhancements**
    - Add localization support for multiple languages
-
-2. **Region Testing**
-   - Test KR region functionality
-   - Test CN region functionality
-   - Verify region detection accuracy
 
 ## Fixed / Done
 

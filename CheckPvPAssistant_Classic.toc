@@ -1,11 +1,10 @@
-## Interface: 110107
+## Interface: 50500
 ## Title: Check-PvP Assistant
 ## Notes: Addon that adds "Check PvP" option to player dropdown menus in LFG, and other menus for easy access to Check-PvP armory.
 ## Author: Kirom
 ## Version: @project-version@
 ## IconTexture: Interface\Icons\Achievement_featsofstrength_gladiator_07
 ## License: MIT
-## Category: PvP
 
 ## SavedVariables: CheckPvPAssistantDB
 
@@ -16,8 +15,8 @@
 src/config.lua
 
 # Database
-src/db/db_realms.lua
-src/db/db_regions.lua
+src/db/db_classic_realms.lua
+src/db/db_classic_regions.lua
 
 # Utilities
 src/utils.lua
@@ -31,4 +30,4 @@ src/events.lua
 src/commands.lua
 
 # Core coordination
-src/core.lua
+src/core.lua 

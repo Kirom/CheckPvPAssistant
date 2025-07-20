@@ -35,6 +35,20 @@ local function HandleSlashCommand(msg)
         local modeText = currentMode == "name" and "name-realm" or "full URL"
         print("|cff00ff00CheckPvP Assistant:|r Current copy mode: " .. modeText)
         print("  Use |cffffcc00/checkpvp useurl|r or |cffffcc00/checkpvp usename|r to change")
+    elseif command == "realms" then  -- TODO: Remove this command once MoP Classic is tested after release
+        -- Show current realms
+        local realms = ns.realmSlugs
+        print("|cff00ff00CheckPvP Assistant:|r Current realms:")
+        for realm, slug in pairs(realms) do
+            print("  " .. realm .. " - " .. slug)
+        end
+    elseif command == "regions" then  -- TODO: Remove this command once MoP Classic is tested after release
+        -- Show current regions
+        local regions = ns.regionIDs
+        print("|cff00ff00CheckPvP Assistant:|r Current regions:")
+        for region, id in pairs(regions) do
+            print("  " .. region .. " - " .. id)
+        end
     else
         print("|cffff0000CheckPvP Assistant:|r Unknown command. Use '/checkpvp help' for available commands.")
     end
