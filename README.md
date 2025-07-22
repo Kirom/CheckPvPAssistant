@@ -62,8 +62,8 @@ The addon is automatically distributed to multiple platforms via GitHub Actions:
 1. **Right-click on any player** (target, party member, raid member, guild member, friend, enemy, or yourself)
 2. Look for **"Check PvP"** in the context menu
 3. **Click the option** to open a dialog with either the name-realm format or Check-PvP.fr URL (depending on your copy mode)
-4. **Press Ctrl+C** to copy the text to your clipboard
-5. **Press Enter or Escape** to close the dialog
+4. **Press Ctrl+C** to copy the text to your clipboard (dialog auto-closes by default)
+5. **Press Enter or Escape** to close the dialog manually (if auto-close is disabled)
 6. If copying URLs: Open the URL in your browser to view the player's PvP statistics
 7. If copying name-realm: Use the format for Discord, chat, or other applications
 
@@ -179,17 +179,9 @@ The addon has a simple debug mode that can be toggled using slash commands:
 - `/checkpvp useurl` - Copy full Check-PvP URLs
 - `/checkpvp usename` - Copy name-realm format (e.g., "PlayerName-RealmName") (default)
 - `/checkpvp mode` - Show current copy mode
+- `/checkpvp autoclose` - Toggle auto-close dialog after copy
 
-### Examples
-
-```
-/checkpvp debug        # Toggle debug mode
-/checkpvp usename      # Copy name-realm format (default)
-/checkpvp useurl       # Copy full URLs to Check-PvP.fr
-/checkpvp mode         # Show current copy mode
-```
-
-Debug setting is automatically saved and will persist between game sessions.
+All settings are automatically saved and will persist between game sessions.
 
 ## Technical Details
 

@@ -41,8 +41,10 @@ read_globals = {
     -- Core WoW API
     "C_LFGList",
     "C_FriendList",
+    "C_Timer",
     "UnitExists",
     "GetCurrentRegion",
+    "IsControlKeyDown",
     "WOW_PROJECT_ID",
 
     -- Menu constants

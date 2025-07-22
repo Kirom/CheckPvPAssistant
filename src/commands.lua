@@ -13,6 +13,7 @@ local function HandleSlashCommand(msg)
         print("  |cffffcc00/checkpvp useurl|r - Copy full URLs")
         print("  |cffffcc00/checkpvp usename|r - Copy name-realm format (default)")
         print("  |cffffcc00/checkpvp mode|r - Show current copy mode")
+        print("  |cffffcc00/checkpvp autoclose|r - Toggle auto-close dialog after copy")
         return
     end
 
@@ -35,6 +36,11 @@ local function HandleSlashCommand(msg)
         local modeText = currentMode == "name" and "name-realm" or "full URL"
         print("|cff00ff00CheckPvP Assistant:|r Current copy mode: " .. modeText)
         print("  Use |cffffcc00/checkpvp useurl|r or |cffffcc00/checkpvp usename|r to change")
+    elseif command == "autoclose" then
+        -- Toggle auto-close dialog behavior
+        local newValue = not ns.config.AUTO_CLOSE_DIALOG
+        ns.SetConfig("AUTO_CLOSE_DIALOG", newValue)
+        print("|cff00ff00CheckPvP Assistant:|r Auto-close dialog after copy", newValue and "enabled" or "disabled")
     elseif command == "realms" then  -- TODO: Remove this command once MoP Classic is tested after release
         -- Show current realms
         local realms = ns.realmSlugs

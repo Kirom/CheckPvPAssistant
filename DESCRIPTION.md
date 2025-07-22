@@ -19,17 +19,19 @@ A World of Warcraft addon that adds convenient access to [Check-PvP.fr](https://
 
 ### **Available Slash Commands**
 
+*   `/checkpvp` or `/cpvp` - Show available commands
 *   `/checkpvp usename` - Switch to name-realm format copying (default)
 *   `/checkpvp useurl` - Switch to URL copying
 *   `/checkpvp mode` - Show current copy mode
+*   `/checkpvp autoclose` - Toggle auto-close dialog after copy
 
 ## Usage
 
 1.  **Right-click on any player** (target, party member, raid member, guild member, friend, enemy, or yourself)
 2.  Look for **"Check PvP"** in the context menu
 3.  **Click the option** to open a dialog with either name-realm format or Check-PvP.fr URL (depending on your mode)
-4.  **Press Ctrl+C** to copy the text to your clipboard
-5.  **Press Enter or Escape** to close the dialog
+4.  **Press Ctrl+C** to copy the text to your clipboard (dialog auto-closes by default)
+5.  **Press Enter or Escape** to close the dialog manually (if auto-close is disabled)
 6.  **Use the copied content**:
     *   **Name-Realm mode**: Paste into Check-PvP.fr search bar or use in Discord/chat for example
     *   **URL mode**: Open directly in your browser
@@ -89,16 +91,6 @@ The addon works with players from various sources:
 | <strong>LFG Seeker</strong> |<img src="https://raw.githubusercontent.com/Kirom/CheckPvPAssistant/refs/heads/master/assets/images/lfg-seeker-example.png" alt="LFG Seeker Example"> |
 | <strong>Guild Member</strong> |<img src="https://raw.githubusercontent.com/Kirom/CheckPvPAssistant/refs/heads/master/assets/images/guild-example.png" alt="Guild Example"> |
 | <strong>Community Member</strong> |<img src="https://raw.githubusercontent.com/Kirom/CheckPvPAssistant/refs/heads/master/assets/images/community-example.png" alt="Community Example"> |
-
-## ⚙️ Configuration
-
-### Slash Commands
-
-*   `/checkpvp` or `/cpvp` - Show available commands
-*   `/checkpvp debug` - Toggle debug output
-*   `/checkpvp usename` - Copy name-realm format (default)
-*   `/checkpvp useurl` - Copy full Check-PvP URLs
-*   `/checkpvp mode` - Show current copy mode
 
 ### Supported Contexts
 

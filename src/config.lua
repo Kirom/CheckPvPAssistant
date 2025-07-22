@@ -10,6 +10,7 @@ ns.config = {}
 local defaults = {
     DEBUG = false,                                -- Set to true to enable debug output
     COPY_MODE = "name",                           -- Copy mode: "url" for full URL, "name" for name-realm format
+    AUTO_CLOSE_DIALOG = true,                     -- Auto-close copy dialog after Ctrl+C
 }
 
 -- Fixed settings (not user-configurable)

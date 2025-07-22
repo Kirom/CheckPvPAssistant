@@ -3,6 +3,47 @@ local _, ns = ...
 -- UI module
 ns.ui = {}
 
+-- Auto-close functionality for copy dialog
+local function SetupAutoClose(editBox, frame)
+    if not ns.config.AUTO_CLOSE_DIALOG then
+        return
+    end
+
+    -- Handle Ctrl+C detection and auto-close
+    local function HandleCtrlC(_, key)
+        if key == "C" and IsControlKeyDown() then
+            -- Always ensure text is selected when Ctrl+C is pressed
+            editBox:HighlightText()
+            editBox:SetFocus()
+            ns.utils.DebugPrint("Detected Ctrl+C combination - ensured text is selected")
+
+            -- Small delay to ensure copy operation completes before closing
+            C_Timer.After(0.1, function()
+                if frame:IsShown() then
+                    frame:Hide()
+                    ns.utils.DebugPrint("Auto-closed dialog after Ctrl+C")
+                end
+            end)
+        end
+    end
+
+    -- Set up keyboard event detection
+    editBox:SetScript("OnKeyDown", HandleCtrlC)
+    editBox:EnableKeyboard(true)
+    editBox:SetScript("OnShow", function(self)
+        self:SetFocus()
+    end)
+end
+
+-- Get instruction text based on auto-close setting
+local function GetInstructionText()
+    if ns.config.AUTO_CLOSE_DIALOG then
+        return "Press Ctrl+C to copy (auto-closes)"
+    else
+        return "Press Ctrl+C to copy, then press Enter or Escape to close"
+    end
+end
+
 -- Show copy URL dialog
 function ns.ui.ShowCopyURLDialog(text)
     if not text then return end
@@ -34,9 +75,12 @@ function ns.ui.ShowCopyURLDialog(text)
     editBox:SetScript("OnEscapePressed", function() frame:Hide() end)
     editBox:SetScript("OnEnterPressed", function() frame:Hide() end)
 
+    -- Set up auto-close functionality (if enabled)
+    SetupAutoClose(editBox, frame)
+
     local instruction = frame:CreateFontString(nil, "OVERLAY", "GameFontNormal")
     instruction:SetPoint("BOTTOM", frame, "BOTTOM", 0, 20)
-    instruction:SetText("Press Ctrl+C to copy, then press Enter or Escape to close")
+    instruction:SetText(GetInstructionText())
 
     frame:Show()
 end
