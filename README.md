@@ -15,6 +15,8 @@
 [![Interface Version](https://img.shields.io/badge/Game%20Version-11.1.7%20|%205.5.0-brightgreen)](https://github.com/Kirom/CheckPvPAssistant)
 [![GitHub issues](https://img.shields.io/github/issues/Kirom/CheckPvPAssistant)](https://github.com/Kirom/CheckPvPAssistant/issues)
 
+[![Discord](https://img.shields.io/badge/Discord-Join%20Community-7289DA?logo=discord)](http://discord.gg/8wWePHZYwT)
+
 </div>
 
 A World of Warcraft addon that adds convenient access to [Check-PvP.fr](https://check-pvp.fr) player profiles through right-click context menus. Supports LFG search results and applicants and generates full URLs for the player that is selected by default and can be copied to the clipboard immediately with Ctrl+C.
@@ -280,8 +282,19 @@ Special thanks to the Check-PvP.fr team for providing the excellent PvP statisti
 ## 📞 Support & Feedback
 
 For bug reports, feature requests, or general feedback:
+- **Discord Community** - [Join our Discord server](http://discord.gg/8wWePHZYwT) for real-time support and discussions
 - **GitHub Issues** - [CheckPvPAssistant Issues](https://github.com/Kirom/CheckPvPAssistant/issues)
 - **Documentation** - See README.md for detailed usage instructions and screenshots
+
+### Discord Community
+
+Join our Discord server to:
+- Get real-time help with the addon
+- Report bugs and suggest features
+- Share screenshots and experiences
+- Connect with other PvP players
+
+[![Discord](https://img.shields.io/badge/Discord-Join%20Community-7289DA?logo=discord)](http://discord.gg/8wWePHZYwT)
 
 ---
 
