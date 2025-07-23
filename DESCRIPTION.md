@@ -119,8 +119,19 @@ The addon works in multiple contexts as demonstrated in the screenshots above:
 
 For bug reports, feature requests, or general feedback:
 
+*   **Discord Community** - [Join our Discord server](http://discord.gg/8wWePHZYwT) for real-time support and discussions
 *   **GitHub Issues** - [CheckPvPAssistant Issues](https://github.com/Kirom/CheckPvPAssistant/issues)
 *   **Documentation** - See README.md for detailed usage instructions and screenshots
+
+### Discord Community
+
+Join our Discord server to:
+* Get real-time help with the addon
+* Report bugs and suggest features
+* Share screenshots and experiences
+* Connect with other PvP players
+
+[![Discord](https://img.shields.io/badge/Discord-Join%20Community-7289DA?logo=discord)](http://discord.gg/8wWePHZYwT)
 
 ***
 
