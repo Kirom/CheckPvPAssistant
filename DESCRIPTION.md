@@ -2,8 +2,7 @@
 
 A World of Warcraft addon that adds convenient access to [Check-PvP.fr](https://check-pvp.fr/) player profiles through right-click context menus. Supports LFG search results and applicants.
 
-**NEW in v1.2.0: Complete Mists of Pandaria Classic support!** The addon now works seamlessly across both Retail and MoP Classic with automatic version detection.
-
+**NEW in v1.3.0: Auto-close copy dialog!** The addon now automatically closes the copy dialog after Ctrl+C is pressed.
 
 ## 🎯 Key Features
 
