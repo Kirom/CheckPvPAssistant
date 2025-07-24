@@ -107,13 +107,6 @@ The addon works in multiple contexts as demonstrated in the screenshots above:
 *   **Battle.Net friends** - Right-click on Battle.Net friends
 *   **Enemy players** - Right-click on opposing faction players
 
-## 🔧 Requirements
-
-*   **World of Warcraft**: 
-    *   **Retail**: The War Within (11.1.7+) or later
-    *   **MoP Classic**: Mists of Pandaria Classic (5.5.0) or later
-*   **Menu System**: Uses the new Menu API introduced in TWW (Retail) and compatible with MoP Classic
-
 ## 📞 Support & Feedback
 
 For bug reports, feature requests, or general feedback:
