@@ -9,7 +9,7 @@ ns.config = {}
 -- Default configuration values
 local defaults = {
     DEBUG = false,                                -- Set to true to enable debug output
-    COPY_MODE = "name",                           -- Copy mode: "url" for full URL, "name" for name-realm format
+    COPY_MODE = "name",                           -- Copy mode: "url" for full URL, "name" for name-realm
     AUTO_CLOSE_DIALOG = true,                     -- Auto-close copy dialog after Ctrl+C
 }
 
@@ -61,6 +61,9 @@ function ns.SetConfig(key, value)
         ns.config[key] = value
         CheckPvPAssistantDB = CheckPvPAssistantDB or {}
         CheckPvPAssistantDB[key] = value
+
+        -- Refresh options panel
+        ns.options.RefreshOptionsPanel()
     else
         print("|cffff0000CheckPvP Assistant:|r Unknown config key:", key)
     end
@@ -76,6 +79,9 @@ configFrame:SetScript("OnEvent", function(_, _, addonName)
 
         -- Load user configuration
         LoadUserConfig()
+
+        -- Refresh options panel (delay to ensure it's created)
+        C_Timer.After(0.1, ns.options.RefreshOptionsPanel)
 
         configFrame:UnregisterEvent("ADDON_LOADED")
     end

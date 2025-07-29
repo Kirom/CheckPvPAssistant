@@ -25,6 +25,7 @@ src/utils.lua
 src/region.lua
 src/url.lua
 src/ui.lua
+src/options.lua
 src/menu.lua
 src/events.lua
 src/commands.lua

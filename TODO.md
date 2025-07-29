@@ -21,7 +21,15 @@
 
 ## Fixed / Done
 
-1. **Copy Dialog Enhancement** - [IMPLEMENTED]
+1. **Simple Settings Panel** - [IMPLEMENTED]
+   - Added clean interface options panel
+   - Accessible via Interface Options → AddOns → Check-PvP Assistant
+   - Dropdown selection for copy mode (Full URL or Name-Realm)
+   - Checkbox control for auto-close dialog behavior
+   - Automatic settings synchronization between panel and saved variables
+   - Uses modern Settings API (supported in both Retail and MoP Classic)
+
+2. **Copy Dialog Enhancement** - [IMPLEMENTED]
    - Added option to auto-close copy dialog after text is copied (Ctrl+C)
    - Implemented toggle functionality for auto-close behavior via `/checkpvp autoclose` command
    - Default behavior: auto-close ON by default for better UX, with toggle for users who prefer manual control

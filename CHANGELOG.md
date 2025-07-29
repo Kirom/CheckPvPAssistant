@@ -5,6 +5,20 @@ All notable changes to CheckPvPAssistant will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Added
+- **Simple Settings Panel** - Clean interface options panel
+  - Accessible via Interface Options → AddOns → Check-PvP Assistant
+  - Dropdown selection for copy mode (Full URL or Name-Realm)
+  - Checkbox control for auto-close dialog behavior
+  - Automatic settings synchronization between panel and saved variables
+  - Uses modern Settings API (supported in both Retail and MoP Classic)
+
+### Changed
+- **Enhanced User Experience** - Settings are now accessible through standard Interface Options
+- **Improved Documentation** - Updated README with settings panel information
+
 ## [1.3.0] - 2025-07-23
 
 ### Added

@@ -10,6 +10,9 @@ local function Initialize()
 
     -- Initialize event handling
     ns.events.Initialize()
+
+    -- Initialize options panel
+    ns.options.Initialize()
 end
 
 -- Start initialization

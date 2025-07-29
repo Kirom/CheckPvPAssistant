@@ -12,6 +12,18 @@ globals = {
     -- Frame and UI API
     "CreateFrame",
     "UIParent",
+    "InterfaceOptionsFramePanelContainer",
+
+    -- Dropdown UI API
+    "UIDropDownMenu_SetWidth",
+    "UIDropDownMenu_SetText",
+    "UIDropDownMenu_Initialize",
+    "UIDropDownMenu_CreateInfo",
+    "UIDropDownMenu_SetSelectedValue",
+    "UIDropDownMenu_AddButton",
+
+    -- Settings API
+    "Settings",
 
     -- Unit API
     "UnitName",

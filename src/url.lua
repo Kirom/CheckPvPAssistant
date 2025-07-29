@@ -28,7 +28,7 @@ function ns.url.GetFullURLFormat(name, realm)
     return string.format("%s/%s/%s/%s", ns.config.BASE_URL, regionCode, englishRealm, name)
 end
 
--- Generate name-realm format for a player
+-- Generate name-realm for a player
 function ns.url.GetNameRealmFormat(name, realm)
     if not name or not realm then return end
 
@@ -43,7 +43,7 @@ function ns.url.GetNameRealmFormat(name, realm)
     local englishRealm = ns.region.GetRealmSlug(realm)
     ns.utils.DebugPrint("Realm translation:", realm, "->", englishRealm)
 
-    ns.utils.DebugPrint("Final name-realm format: name =", name, "realm =", englishRealm)
+    ns.utils.DebugPrint("Final name-realm: name =", name, "realm =", englishRealm)
 
     return string.format("%s-%s", name, englishRealm)
 end

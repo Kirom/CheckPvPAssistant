@@ -21,6 +21,8 @@
 
 A World of Warcraft addon that adds convenient access to [Check-PvP.fr](https://check-pvp.fr) player profiles through right-click context menus. Supports LFG search results and applicants and generates full URLs for the player that is selected by default and can be copied to the clipboard immediately with Ctrl+C.
 
+**NEW in v1.4.0: In-Game Options Menu!** Configure all addon settings directly through the game's Interface Options panel.
+
 ## Features
 
 - **Right-click integration**: Access Check-PvP URLs directly from player context menus
@@ -28,6 +30,7 @@ A World of Warcraft addon that adds convenient access to [Check-PvP.fr](https://
 - **LFG integration**: Generate URLs for players in LFG search results and applicants
 - **Cross-realm support**: Properly handles players from different realms
 - **Region detection**: Automatically detects your region (US, EU, KR, TW, CN)
+- **In-Game Options Menu**: Configure all settings through Interface Options → AddOns → CheckPvP Assistant
 
 ## Installation
 
@@ -63,7 +66,7 @@ The addon is automatically distributed to multiple platforms via GitHub Actions:
 
 1. **Right-click on any player** (target, party member, raid member, guild member, friend, enemy, or yourself)
 2. Look for **"Check PvP"** in the context menu
-3. **Click the option** to open a dialog with either the name-realm format or Check-PvP.fr URL (depending on your copy mode)
+3. **Click the option** to open a dialog with either the name-realm or Check-PvP.fr URL (depending on your copy mode)
 4. **Press Ctrl+C** to copy the text to your clipboard (dialog auto-closes by default)
 5. **Press Enter or Escape** to close the dialog manually (if auto-close is disabled)
 6. If copying URLs: Open the URL in your browser to view the player's PvP statistics
@@ -73,8 +76,8 @@ The addon is automatically distributed to multiple platforms via GitHub Actions:
 
 The addon supports two copy modes that can be switched using slash commands:
 
-- **Name-Realm Mode** (default): Copies "PlayerName-RealmName" format for easy sharing in chat
-- **URL Mode**: Copies full Check-PvP.fr URLs for direct browser access
+- **Name-Realm** (default): Copies "PlayerName-RealmName" for easy sharing in chat
+- **URL**: Copies full Check-PvP.fr URLs for direct browser access
 
 Use `/checkpvp usename` or `/checkpvp useurl` to switch between modes.
 
@@ -98,7 +101,7 @@ The dialog that appears depends on your current copy mode:
 
 ![Name-Realm Dialog](./assets/images/copy-name-realm-dialog.png)
 
-*Dialog showing name-realm format ready to copy (Press Ctrl+C to copy)*
+*Dialog showing name-realm ready to copy (Press Ctrl+C to copy)*
 
 **URL Mode:**
 
@@ -108,8 +111,8 @@ The dialog that appears depends on your current copy mode:
 
 **Step 3: Using the copied content**
 
-- **If in Name-Realm mode**: Use the "PlayerName-RealmName" format to paste into website search bar and open character profile
-- **If in URL mode**: Open the URL in your browser to view character profile
+- **If in Name-Realm**: Use the "PlayerName-RealmName" to paste into website search bar and open character profile
+- **If in URL**: Open the URL in your browser to view character profile
 
 ![Successful Website Result](./assets/images/website-success-example.png)
 *Example of Check-PvP.fr showing player's PvP statistics and profile*
@@ -172,14 +175,27 @@ The addon works in multiple contexts as demonstrated in the screenshots above:
 
 ## Configuration
 
-The addon has a simple debug mode that can be toggled using slash commands:
+### Settings Panel
+
+You can access the settings panel through Interface Options:
+- **In-game**: Open Interface Options (Esc → Interface) and find "Check-PvP Assistant" in the AddOns section
+
+The settings panel provides a simple interface to configure:
+- **Copy Mode**: Dropdown to choose between full URLs or name-realm
+- **Auto-close Dialog**: Automatically close the copy dialog after Ctrl+C
+
+![Addon Options Example](./assets/images/addon-options-example.png)
+
+*The CheckPvP Assistant options panel in the game's Interface Options menu*
 
 ### Slash Commands
+
+For quick access, you can also use these commands:
 
 - `/checkpvp` or `/cpvp` - Show available commands
 - `/checkpvp debug` - Toggle debug output
 - `/checkpvp useurl` - Copy full Check-PvP URLs
-- `/checkpvp usename` - Copy name-realm format (e.g., "PlayerName-RealmName") (default)
+- `/checkpvp usename` - Copy name-realm (e.g., "PlayerName-RealmName") (default)
 - `/checkpvp mode` - Show current copy mode
 - `/checkpvp autoclose` - Toggle auto-close dialog after copy
 

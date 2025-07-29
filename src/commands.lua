@@ -11,7 +11,7 @@ local function HandleSlashCommand(msg)
         print("|cff00ff00CheckPvP Assistant|r commands:")
         print("  |cffffcc00/checkpvp debug|r - Toggle debug output")
         print("  |cffffcc00/checkpvp useurl|r - Copy full URLs")
-        print("  |cffffcc00/checkpvp usename|r - Copy name-realm format (default)")
+        print("  |cffffcc00/checkpvp usename|r - Copy name-realm (default)")
         print("  |cffffcc00/checkpvp mode|r - Show current copy mode")
         print("  |cffffcc00/checkpvp autoclose|r - Toggle auto-close dialog after copy")
         return
@@ -29,7 +29,7 @@ local function HandleSlashCommand(msg)
     elseif command == "usename" then
         -- Set copy mode to name-realm
         ns.SetConfig("COPY_MODE", "name")
-        print("|cff00ff00CheckPvP Assistant:|r Now copying name-realm format.")
+        print("|cff00ff00CheckPvP Assistant:|r Now copying name-realm.")
     elseif command == "mode" then
         -- Show current copy mode
         local currentMode = ns.config.COPY_MODE

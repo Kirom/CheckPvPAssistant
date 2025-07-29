@@ -7,8 +7,8 @@ This directory contains all visual assets for the CheckPvPAssistant addon docume
 ### 📷 Screenshots Created ✅
 
 1. **`copy-name-realm-dialog.png`** ✅
-   - The dialog box that appears with the name-realm format (default mode)
-   - Shows the "PlayerName-RealmName" format and copy instructions
+   - The dialog box that appears with the name-realm (default mode)
+   - Shows the "PlayerName-RealmName" and copy instructions
    - Size: 33KB
 
 2. **`copy-url-dialog.png`** ✅
@@ -65,6 +65,11 @@ This directory contains all visual assets for the CheckPvPAssistant addon docume
     - Step 3: Successful character profile after manual search
     - Shows the final result with character data
     - Size: 161KB
+
+13. **`addon-options-example.png`** ✅
+    - Screenshot of the CheckPvP Assistant options panel in Interface Options
+    - Shows the in-game configuration interface with all available settings
+    - Size: 240KB
 
 ## Image Guidelines
 
