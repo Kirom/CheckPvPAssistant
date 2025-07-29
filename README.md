@@ -21,8 +21,6 @@
 
 A World of Warcraft addon that adds convenient access to [Check-PvP.fr](https://check-pvp.fr) player profiles through right-click context menus. Supports LFG search results and applicants and generates full URLs for the player that is selected by default and can be copied to the clipboard immediately with Ctrl+C.
 
-**NEW in v1.4.0: In-Game Options Menu!** Configure all addon settings directly through the game's Interface Options panel.
-
 ## Features
 
 - **Right-click integration**: Access Check-PvP URLs directly from player context menus
@@ -74,12 +72,12 @@ The addon is automatically distributed to multiple platforms via GitHub Actions:
 
 ### Copy Modes
 
-The addon supports two copy modes that can be switched using slash commands:
+The addon supports two copy modes that can be switched using slash commands or in-game options menu:
 
 - **Name-Realm** (default): Copies "PlayerName-RealmName" for easy sharing in chat
 - **URL**: Copies full Check-PvP.fr URLs for direct browser access
 
-Use `/checkpvp usename` or `/checkpvp useurl` to switch between modes.
+Use `/checkpvp usename` or `/checkpvp useurl` to switch between modes or in-game options menu.
 
 > **Note**: If the website shows "character not found", don't worry! See the detailed step-by-step guide with screenshots in the [Character Not Found section](#character-not-found---step-by-step-fix) below to manually search for the character (this will fetch the latest data from Blizzard's servers).
 
@@ -245,6 +243,7 @@ CheckPvPAssistant/
 │   ├── url.lua                     # URL generation logic
 │   ├── ui.lua                      # UI components and dialogs
 │   ├── menu.lua                    # Menu system integration
+│   ├── options.lua                 # In-game options menu
 │   ├── events.lua                  # Event handling coordination
 │   ├── commands.lua                # Slash command handling
 │   └── core.lua                    # Main initialization and coordination
