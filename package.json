@@ -1,6 +1,6 @@
 {
   "name": "checkpvpassistant",
-  "version": "1.4.4",
+  "version": "1.4.5",
   "description": "World of Warcraft addon for Check-PvP.fr integration",
   "author": "Kirom",
   "license": "MIT",
@@ -38,7 +38,10 @@
   "distribution": {
     "curseforge": {
       "url": "https://www.curseforge.com/wow/addons/check-pvp-assistant",
-      "gameVersions": ["110105", "110107"]
+      "gameVersions": [
+        "110105",
+        "110107"
+      ]
     },
     "wago": {
       "url": "https://addons.wago.io/addons/check-pvp-assistant"
@@ -47,4 +50,4 @@
       "supported": true
     }
   }
-} 
+}
