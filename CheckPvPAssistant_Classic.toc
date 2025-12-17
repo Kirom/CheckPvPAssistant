@@ -1,4 +1,4 @@
-## Interface: 50502
+## Interface: 50503
 ## Title: Check-PvP Assistant
 ## Notes: Addon that adds "Check PvP" option to player dropdown menus in LFG, and other menus for easy access to Check-PvP armory.
 ## Author: Kirom
