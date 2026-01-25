@@ -27,7 +27,7 @@
     "luacheck": "*"
   },
   "wow": {
-    "interface": "110207",
+    "interface": "120000",
     "title": "Check-PvP Assistant",
     "author": "Kirom",
     "category": "PvP",
@@ -39,7 +39,7 @@
     "curseforge": {
       "url": "https://www.curseforge.com/wow/addons/check-pvp-assistant",
       "gameVersions": [
-        "110207",
+        "120000",
         "50503"
       ]
     },
