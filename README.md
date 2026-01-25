@@ -168,7 +168,7 @@ The addon works in multiple contexts as demonstrated in the screenshots above:
 
 ## Requirements
 
-- **World of Warcraft**: The War Within (11.0+) or later
+- **World of Warcraft**: Midnight (12.0+) or later
 - **Menu System**: Uses the new Menu API introduced in TWW
 
 ## Configuration
