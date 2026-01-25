@@ -11,7 +11,7 @@
 [![CurseForge](https://img.shields.io/badge/CurseForge-Download-orange?&logo=curseforge)](https://www.curseforge.com/wow/addons/check-pvp-assistant)
 [![Wago](https://img.shields.io/badge/Wago-Install-blue?)](https://addons.wago.io/addons/check-pvp-assistant)
 
-[![World of Warcraft](https://img.shields.io/badge/World%20of%20Warcraft-The%20War%20Within%20%7C%20MoP%20Classic-0084ff?&logo=battle.net)](https://worldofwarcraft.com)
+[![World of Warcraft](https://img.shields.io/badge/World%20of%20Warcraft-Midnight%20%7C%20MoP%20Classic-0084ff?&logo=battle.net)](https://worldofwarcraft.blizzard.com/ru-ru/midnight)
 [![Interface Version](https://img.shields.io/badge/Game%20Version-12.0.0%20|%205.5.3-brightgreen)](https://github.com/Kirom/CheckPvPAssistant)
 [![GitHub issues](https://img.shields.io/github/issues/Kirom/CheckPvPAssistant)](https://github.com/Kirom/CheckPvPAssistant/issues)
 
