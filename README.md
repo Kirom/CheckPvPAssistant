@@ -12,7 +12,7 @@
 [![Wago](https://img.shields.io/badge/Wago-Install-blue?)](https://addons.wago.io/addons/check-pvp-assistant)
 
 [![World of Warcraft](https://img.shields.io/badge/World%20of%20Warcraft-Midnight%20%7C%20MoP%20Classic-0084ff?&logo=battle.net)](https://worldofwarcraft.blizzard.com/ru-ru/midnight)
-[![Interface Version](https://img.shields.io/badge/Game%20Version-12.0.1%20|%205.5.3-brightgreen)](https://github.com/Kirom/CheckPvPAssistant)
+[![Interface Version](https://img.shields.io/badge/Game%20Version-12.0.5%20|%205.5.3-brightgreen)](https://github.com/Kirom/CheckPvPAssistant)
 [![GitHub issues](https://img.shields.io/github/issues/Kirom/CheckPvPAssistant)](https://github.com/Kirom/CheckPvPAssistant/issues)
 
 [![Discord](https://img.shields.io/badge/Discord-Join%20Community-7289DA?logo=discord)](http://discord.gg/8wWePHZYwT)

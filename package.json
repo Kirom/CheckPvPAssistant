@@ -1,6 +1,6 @@
 {
   "name": "checkpvpassistant",
-  "version": "1.4.8",
+  "version": "1.4.9",
   "description": "World of Warcraft addon for Check-PvP.fr integration",
   "author": "Kirom",
   "license": "MIT",
@@ -27,7 +27,7 @@
     "luacheck": "*"
   },
   "wow": {
-    "interface": "120001",
+    "interface": "120005",
     "title": "Check-PvP Assistant",
     "author": "Kirom",
     "category": "PvP",
