@@ -8,7 +8,7 @@
 
 [![GitHub release (latest by date)](https://img.shields.io/github/v/release/Kirom/CheckPvPAssistant)](https://github.com/Kirom/CheckPvPAssistant/releases/latest)
 [![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/Kirom/CheckPvPAssistant/release.yml?&label=Build)](https://github.com/Kirom/CheckPvPAssistant/actions)
-[![CurseForge](https://img.shields.io/badge/CurseForge-Download-orange?&logo=curseforge)](https://www.curseforge.com/wow/addons/check-pvp-assistant)
+[![CurseForge](https://img.shields.io/curseforge/dt/1298008?label=CurseForge&color=orange&logo=curseforge)](https://www.curseforge.com/wow/addons/check-pvp-assistant)
 [![Wago](https://img.shields.io/badge/Wago-Install-blue?)](https://addons.wago.io/addons/check-pvp-assistant)
 
 [![World of Warcraft](https://img.shields.io/badge/World%20of%20Warcraft-Midnight%20%7C%20MoP%20Classic-0084ff?&logo=battle.net)](https://worldofwarcraft.blizzard.com/ru-ru/midnight)
