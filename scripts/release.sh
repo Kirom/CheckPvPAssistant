@@ -28,6 +28,15 @@
 
 set -e
 
+# Portable in-place sed (BSD/macOS requires -i '', GNU requires -i)
+sed_inplace() {
+    if sed --version >/dev/null 2>&1; then
+        sed -i "$@"
+    else
+        sed -i '' "$@"
+    fi
+}
+
 # Colors for output
 RED='\033[0;31m'
 GREEN='\033[0;32m'
@@ -128,7 +137,7 @@ set_toc_interface() {
     if [ ! -f "$toc_file" ]; then
         echo -e "${RED}❌ $toc_file not found!${NC}"; exit 1
     fi
-    sed -i "s/^## Interface:.*/## Interface: ${new_interface}/" "$toc_file"
+    sed_inplace "s/^## Interface:.*/## Interface: ${new_interface}/" "$toc_file"
     echo -e "${GREEN}✅ ${toc_file}: Interface -> ${new_interface}${NC}"
 }
 
@@ -146,7 +155,7 @@ update_interface_versions_in_readme() {
 # Update a top-level "key": "value" string in package.json (simple, dependency-free)
 set_json_string() {
     local key=$1 value=$2 file="package.json"
-    sed -i "s/\"${key}\": \"[^\"]*\"/\"${key}\": \"${value}\"/" "$file"
+    sed_inplace "s/\"${key}\": \"[^\"]*\"/\"${key}\": \"${value}\"/" "$file"
 }
 
 create_release_notes() {
