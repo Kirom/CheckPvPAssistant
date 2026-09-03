@@ -9,7 +9,6 @@ ignore:
   - CHANGELOG.md
   - CONTRIBUTING.md
   - DESCRIPTION.md
-  - LICENSE
   - TODO.md
   - assets
   - docs
@@ -19,5 +18,3 @@ ignore:
   - .gitignore
   - .pkgmeta
   - ReleaseNotes
-
-license-output: LICENSE
