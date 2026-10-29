@@ -36,6 +36,20 @@ local function IsValidMenu(rootDescription, contextData)
     return which and validTypes[which]
 end
 
+-- Check if the menu is for a player whose identity is secret (12.0+ PvP/instance restrictions).
+-- The menu title then holds a secret name, and any element we add taints the menu layout,
+-- which fails with "attempt to perform numeric conversion on a secret number value".
+local function HasSecretIdentity(contextData)
+    if not contextData then
+        return false
+    end
+    if ns.utils.IsSecret(contextData.name, contextData.server) then
+        return true
+    end
+    local unit = contextData.unit
+    return unit ~= nil and ns.utils.IsSecret(UnitName(unit))
+end
+
 -- Get name and realm from LFG info
 local function GetLFGListInfo(owner)
     local resultID = owner.resultID
@@ -151,6 +165,12 @@ end
 
 -- Hook into the dropdown menu system
 local function AddCheckPvPOption(owner, rootDescription, contextData)
+    -- Leave menus with secret player data untouched (also keeps secrets out of debug output)
+    if HasSecretIdentity(contextData) then
+        ns.utils.DebugPrint("Player identity is secret - skipping menu option")
+        return
+    end
+
     -- Debug output
     if contextData then
         ns.utils.DebugPrint(
